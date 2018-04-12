@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "EditorConfig.editorconfig",
+    "robinbentley.sass-indented",
+    "eg2.tslint",
+    "Orta.vscode-jest",
+    "msjsdiag.debugger-for-chrome"
+  ]
+}

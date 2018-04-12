@@ -1,0 +1,73 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "yarn",
+      "label": "Install dependencies",
+      "args": ["--pure-lockfile"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+
+    {
+      "type": "npm",
+      "script": "test",
+      "label": "Test all",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$tsc",
+        "$tslint5"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+
+    {
+      "type": "npm",
+      "script": "watch:dev",
+      "label": "Watch modifications",
+      "identifier": "watch:dev",
+      "isBackground": true,
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    },
+
+    {
+      "type": "npm",
+      "script": "build:dev",
+      "label": "Build for development",
+      "identifier": "build:dev",
+      "group": "build",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+      }
+    },
+
+    {
+      "type": "npm",
+      "script": "build:prod",
+      "label": "Build for production",
+      "identifier": "build:prod",
+      "group": "build",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+// Common colors
+$black: #000000 !default;
+$white: #ffffff !default;
+$red:   #e74c3c !default;
+$blue:  #3498db !default;
+$green: #2ecc71 !default;
+
+// Primary color of the UI
+$primary-light:  #ffffff !default;
+$primary-medium: #fafafa !default;
+$primary-strong: #e5e5e5 !default;
+
+// Text color of the UI
+$text-medium:  #707070 !default;
+$text-strong: #222222 !default;
+
+// Highlight/Contrast color of the UI
+$highlight-light: #F4AB3C !default;
+$highlight-medium: #e98737 !default;
+$highlight-strong: #E97037 !default;
+
+// Shadow of some modal/button
+$shadow-color: #000000 !default;
+
+// Background color of overlay behind modal
+$overlay-background: #000000 !default;
+
+// Common UI round style
+$border-radius: 4px !default;
+
+// CSS transition delay
+$transition-fast: 0.1s !default;
+$transition-medium: 0.3s !default;
+$transition-slow: 0.5s !default;
+

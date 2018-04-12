@@ -1,0 +1,25 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "electron": "1.8"
+        },
+        "useBuiltIns": "usage"
+      }
+    ],
+    "@babel/preset-stage-2",
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+
+  "plugins": [
+    [
+      "babel-plugin-react-intl", {
+        "messagesDir": "./dist/messages",
+        "enforceDescriptions": false
+      }
+    ]
+  ]
+}
