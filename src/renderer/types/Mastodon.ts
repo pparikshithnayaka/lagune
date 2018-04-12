@@ -1,3 +1,8 @@
+export type StatusVisibility = 'public'|'unlisted'|'private'|'direct';
+export type AttachmentType   = 'image'|'video'|'gifv'|'unknown';
+export type CardType         = 'link'|'photo'|'video'|'rich';
+export type NotificationType = 'mention'|'reblog'|'favourite'|'follow';
+
 export interface Account {
   /** The ID of the account */
   id: number;
@@ -55,7 +60,7 @@ export interface Attachment {
   /** ID of the attachment */
   id: string;
   /** One of: "image", "video", "gifv", "unknown" */
-  type: 'image'|'video'|'gifv'|'unknown';
+  type: AttachmentType;
   /** URL of the locally hosted version of the image */
   url: string;
   /** For remote images, the remote URL of the original image */
@@ -107,7 +112,7 @@ export interface Card {
   /** The image associated with the card, if any */
   image?: string;
   /** "link", "photo", "video", or "rich" */
-  type: 'link'|'photo'|'video'|'rich';
+  type: CardType;
   /** OEmbed data */
   author_name?: string;
   /** OEmbed data */
@@ -200,7 +205,7 @@ export interface Notification {
   /** The notification ID */
   id: string;
   /** One of: "mention", "reblog", "favourite", "follow" */
-  type: 'mention'|'reblog'|'favourite'|'follow';
+  type: NotificationType;
   /** The time the notification was created */
   created_at: string;
   /** The Account sending the notification to the user */
@@ -280,7 +285,7 @@ export interface Status {
   /** If not empty, warning text that should be displayed before the actual content */
   spoiler_text: string;
   /** One of: `public`, `unlisted`, `private`, `direct` */
-  visibility: 'public'|'unlisted'|'private'|'direct';
+  visibility: StatusVisibility;
   /** An array of Attachments */
   media_attachments: Attachment[];
   /** An array of Mentions */
@@ -501,7 +506,7 @@ export interface CreateStatusOptions {
   /** Text to be shown as a warning before the actual content */
   spoiler_text?: string;
   /** Either "direct", "private", "unlisted" or "public" */
-  visibility?: 'public'|'unlisted'|'private'|'direct';
+  visibility?: StatusVisibility;
 }
 
 export interface GetTimelineOptions {

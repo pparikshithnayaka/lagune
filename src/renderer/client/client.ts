@@ -11,20 +11,20 @@ export class Client {
     this.urlVersion = '/api/v1';
   }
 
-  private _request = (url: string, options?: RequestInit): Promise<any|Mastodon.Error> => {
+  private _request = (url: string, options?: RequestInit): Promise<any> => {
     return fetch(url, options)
       .then((response) => response.json()).then((data) => data)
       .catch((error)   => error.json()).then((error) => error);
   }
 
-  private _get = (path: string, params?: object, options?: RequestInit): Promise<any|Mastodon.Error> => {
+  private _get = (path: string, params?: object, options?: RequestInit): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}?${querystring.stringify(params)}`, {
       method: 'GET',
       ...options,
     });
   }
 
-  private _post = (path: string, body?: any, options?: RequestInit): Promise<any|Mastodon.Error> => {
+  private _post = (path: string, body?: any, options?: RequestInit): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}`, {
       method: 'POST',
       body: JSON.stringify(body),
@@ -32,7 +32,7 @@ export class Client {
     });
   }
 
-  private _put = (path: string, body?: any, options?: RequestInit): Promise<any|Mastodon.Error> => {
+  private _put = (path: string, body?: any, options?: RequestInit): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}`, {
       method: 'PUT',
       body: JSON.stringify(body),
@@ -40,7 +40,7 @@ export class Client {
     });
   }
 
-  private _delete = (path: string, body?: any, options?: RequestInit): Promise<any|Mastodon.Error> => {
+  private _delete = (path: string, body?: any, options?: RequestInit): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}`, {
       method: 'DELETE',
       body: JSON.stringify(body),
@@ -48,7 +48,7 @@ export class Client {
     });
   }
 
-  private _patch = (path: string, body?: any, options?: RequestInit): Promise<any|Mastodon.Error> => {
+  private _patch = (path: string, body?: any, options?: RequestInit): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}`, {
       method: 'PATCH',
       body: JSON.stringify(body),
@@ -64,90 +64,231 @@ export class Client {
     return this.url;
   }
 
-  public getAccountById = (id: string): Promise<Mastodon.Account|Mastodon.Error> => {
+  /**
+   * Fetching an account
+   * @param id ID of the account
+   * @return An account
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account
+   */
+  public getAccount = (id: string): Promise<Mastodon.Account|Mastodon.Error> => {
     return this._get(`/accounts/${id}`);
   }
 
+  /**
+   * Getting the current user
+   * @return The authenticated user's Account with an extra attribute source which contains these keys
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user
+   */
   public verfiyCredentials = (): Promise<Mastodon.Credentials|Mastodon.Error> => {
     return this._get('/accounts/verify_credentials');
   }
 
+  /**
+   * Updating the current user
+   * @param options Form data
+   * @return The authenticated user's Account.
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user
+   */
   public updateCredentials = (options?: Mastodon.UpdateCredentialsOptions): Promise<Mastodon.Credentials|Mastodon.Error> => {
     return this._patch('/accounts/update_credentials', options, {headers: {'Content-Type': 'multipart/form-data'}});
   }
 
+  /**
+   * Getting an account's followers
+   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * @param id ID of the target account
+   * @param options Query paramerters
+   * @return An array of accounts
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-followers
+   */
   public getAccountFollowers = (id: string, options?: Mastodon.GetAccountFollowersOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get(`/accounts/${id}/followers`, options);
   }
 
+  /**
+   * Getting who account is following
+   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * @param id ID of the target account
+   * @param options Query parameters
+   * @return An array of accounts
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-account-is-following
+   */
   public getAccountFollowing = (id: string, options?: Mastodon.GetAccountFollowingOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get(`/accounts/${id}/following`, options);
   }
 
+  /**
+   * Getting an account's statuses
+   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * @param id ID of the target account
+   * @param options Query parameters
+   * @return An array of statuses
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses
+   */
   public getAccountStatuses = (id: string, options?: Mastodon.GetAccountStatusesOptions): Promise<Mastodon.Status[]|Mastodon.Error> => {
     return this._get(`/accounts/${id}/statuses`, options);
   }
 
+  /**
+   * Following an account
+   * @param id ID of the target account
+   * @return The target account's relationship
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account
+   */
   public followAccount = (id: string): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/follow`);
   }
 
+  /**
+   * Unfollowing an account
+   * @param id ID of the target account
+   * @return The target account's relationship
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account
+   */
   public unfollowAccount = (id: string): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/unfollow`);
   }
 
+  /**
+   * Blocking an account
+   * @param id ID of the target account
+   * @return The target account's relationship
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account
+   */
   public blockAccount = (id: string): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/block`);
   }
 
+  /**
+   * Unblocking an account
+   * @param id ID of the target account
+   * @return The target account's relationship
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account
+   */
   public unblockAccount = (id: string): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/unblock`);
   }
 
+  /**
+   * Muting an account
+   * @param id ID of the target account
+   * @return The target account's relationship
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
+   */
   public muteAccount = (id: string, options?: Mastodon.MuteAccountOptions): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/mute`, options);
   }
 
+  /**
+   * Unmuting an account
+   * @param id ID of the target account
+   * @return The target account's relationship
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
+   */
   public ummuteAccount = (id: string, options?: Mastodon.MuteAccountOptions): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/ummute`, options);
   }
 
+  /**
+   * Getting an account's relationships
+   * @param options Query parameters
+   * @return An array of Relationships of the current user to a list of given accounts.
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships
+   */
   public getAccountRelationships = (options?: Mastodon.GetAccountRelationshipsOptions): Promise<Mastodon.Relationship[]|Mastodon.Error> => {
     return this._get(`/accounts/relationship`, options);
   }
 
+  /**
+   * Searching for accounts
+   * - Will lookup an account remotely if the search term is in the `username@domain` format and not yet in the database.
+   * @param q What to search for
+   * @param options Query parameters
+   * @return An array of matching accounts
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-accounts
+   */
   public searchAccounts = (q: string, options?: Mastodon.SearchAccountsOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get('/accounts/search', { q, ...options });
   }
 
+  /**
+   * Registering an application
+   * - These values should be requested in the app itself from the API for each new app install + mastodon domain combo, and stored in the app for future requests.
+   * @param options From data
+   * @return Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application
+   */
   public createApp = (options: Mastodon.CreateAppOptions): Promise<Mastodon.OAuth|Mastodon.Error> => {
     return this._post('/apps', options);
   }
 
+  /**
+   * Fetching a user's blocks
+   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * @param options Query parameters
+   * @return An array of accounts blocked by the atuhenticated user
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocks
+   */
   public getBlocks = (options?: Mastodon.GetBlocksOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get('/blocks', options);
   }
 
+  /**
+   * Fetching a user's blocked domains
+   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * @param options Query parameters
+   * @return An array of strings
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocked-domains
+   */
   public getDomainBlocks = (options?: Mastodon.GetDomainBlocksOptions): Promise<string[]|Mastodon.Error> => {
     return this._get('/domain_blocks', options);
   }
 
+  /**
+   * Blocking a domain
+   * @param domain Domain to block
+   * @return An empty object
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain
+   */
   public blockDomain = (domain: string): Promise<{}|Mastodon.Error> => {
     return this._post('/domain_blocks', { domain });
   }
 
+  /**
+   * Unblocking a domain
+   * @param domain Domain to unblock
+   * @return An empty object
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain
+   */
   public unblockDomain = (domain: string): Promise<{}|Mastodon.Error> => {
     return this._delete('/domain_blocks', { domain });
   }
 
+  /**
+   * Fetching a user's favourites
+   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * @param options Query parameters
+   * @return Return an array of Statuses favourited by the authenticated user
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites
+   */
   public getFavourites = (options?: Mastodon.GetFavouritesOptions): Promise<Mastodon.Status[]|Mastodon.Error> => {
     return this._get('/favourites', options);
   }
 
+  /**
+   * Fetching a list of follow requests
+   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * @param options Query parameters
+   * @return Returns an array of Accounts which have requested to follow the authenticated user.
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-list-of-follow-requests
+   */
   public getFollowRequests = (options?: Mastodon.GetFollowRequestsOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get('/follow_requests', options);
   }
 
+  /**
+   *
+   */
   public authorizeFollowRequest = (id: string): Promise<{}|Mastodon.Error> => {
     return this._post(`/follow_requests/${id}/authorize`);
   }
@@ -304,8 +445,8 @@ export class Client {
     return this._post(`/statuses/${id}/unmute`);
   }
 
-  public getTimeline = (path: string, options?: Mastodon.GetTimelineOptions): Promise<Mastodon.Status[]|Mastodon.Error> => {
-    return this._get(`/timelines/${path}`, options);
+  public getTimeline = (id: string, options?: Mastodon.GetTimelineOptions): Promise<Mastodon.Status[]|Mastodon.Error> => {
+    return this._get(`/timelines/${id}`, options);
   }
 
   public getHomeTimeline = (options?: Mastodon.GetTimelineOptions) => this.getTimeline(`/timeline/home`, options);
