@@ -78,11 +78,8 @@ const config = {
 
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        URL:      JSON.stringify(process.env.URL),
-        TOKEN:    JSON.stringify(process.env.TOKEN),
-        LOGIN_ID: JSON.stringify(process.env.LOGIN_ID),
-        PASSWORD: JSON.stringify(process.env.PASSWORD),
+        NODE_ENV:   JSON.stringify(process.env.NODE_ENV),
+        SERVER_URL: JSON.stringify(process.env.SERVER_URL),
       },
     }),
 

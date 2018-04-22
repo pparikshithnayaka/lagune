@@ -1,15 +1,13 @@
-const { env } = process;
-
 export default {
 
   /** URL of authorization server */
-  server_url:     env.SERVER_URL || '',
+  server_url:     process.env.SERVER_URL || '',
 
   /** Type of update channel */
-  update_channel: env.UPDATE_CHANNEL || 'stable',
+  update_channel: process.env.UPDATE_CHANNEL || 'stable',
 
   /** Specify to skip authorization while developing */
-  url:            (env.NODE_ENV !== 'production' && env.URL) || '',
-  steraming_url:  (env.NODE_ENV !== 'production' && env.STREAMING_URL) || '',
-  access_token:   (env.NODE_ENV !== 'production' && env.ACCESS_TOKEN) || '',
+  url:            (process.env.NODE_ENV !== 'production' && process.env.URL) || '',
+  steraming_url:  (process.env.NODE_ENV !== 'production' && process.env.STREAMING_URL) || '',
+  access_token:   (process.env.NODE_ENV !== 'production' && process.env.ACCESS_TOKEN) || '',
 };

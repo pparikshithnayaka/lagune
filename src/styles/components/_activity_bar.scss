@@ -1,0 +1,29 @@
+.activity-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 44px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 70px;
+  background-color: #191b22;
+}
+
+.activity-bar__item {
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.activity-bar__link {
+  color: #ffffff;
+}
+
+.activity-bar__icon {
+  font-size: 24px;
+}
+
+.activity-bar__text {
+  display: none;
+}

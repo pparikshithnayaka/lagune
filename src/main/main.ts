@@ -12,9 +12,8 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     frame: process.platform !== 'darwin',
     height: 600,
-    width: 800,
-    minHeight : 600,
-    minWidth : 800,
+    width: 380,
+    minWidth : 380,
     show: false,
     titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'hidden-inset',
     webPreferences: {
