@@ -1,35 +1,33 @@
 // Common colors
 $black: #000000 !default;
 $white: #ffffff !default;
-$red:   #e74c3c !default;
-$blue:  #3498db !default;
-$green: #2ecc71 !default;
+$red:   #FF5722 !default;
+$blue:  #2196F3 !default;
+$green: #009688 !default;
 
 // Primary color of the UI
-$primary-light:  #ffffff !default;
-$primary-medium: #fafafa !default;
-$primary-strong: #e5e5e5 !default;
+$base-color:  #282c37 !default;
+$base-lighter-color: lighten($base-color, 26%) !default;
+$primary-color:  #9baec8 !default;
+$secondary-color:  #d9e1e8 !default;
+$highlight-color: #2b90d9 !default;
 
-// Text color of the UI
-$text-medium:  #707070 !default;
-$text-strong: #222222 !default;
+// Text colors
+$primary-text-color: #ffffff !default;
+$darker-text-color: $primary-color !default;
+$dark-text-color: $base-lighter-color !default;
+$secondary-text-color: $secondary-color !default;
+$highlight-text-color: $highlight-color !default;
 
-// Highlight/Contrast color of the UI
-$highlight-light: #F4AB3C !default;
-$highlight-medium: #e98737 !default;
-$highlight-strong: #E97037 !default;
+$inverted-text-color: $base-color !default;
+$lighter-text-color: $base-lighter-color !default;
+$light-text-color: $primary-color !default;
 
 // Shadow of some modal/button
 $shadow-color: #000000 !default;
 
-// Background color of overlay behind modal
-$overlay-background: #000000 !default;
-
-// Common UI round style
-$border-radius: 4px !default;
-
 // CSS transition delay
 $transition-fast: 0.1s !default;
-$transition-medium: 0.3s !default;
+$transition-middle: 0.3s !default;
 $transition-slow: 0.5s !default;
 

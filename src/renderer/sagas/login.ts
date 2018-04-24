@@ -1,12 +1,15 @@
 import Mastodon from '@lagunehq/core';
 import { shell } from 'electron';
-import { call, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
+import { RootState } from '@/reducers';
 import { Action } from 'typescript-fsa';
 import { SagaIterator } from 'redux-saga';
 import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 import {
   fetchLoginUrl,
-  fetchLoginUrlSubmit,
+  fetchLoginUrlProcess,
+  verifyCode,
+  verifyCodeProcess,
 } from '@/actions/login';
 import config from '@/config';
 
@@ -23,7 +26,7 @@ interface LaguneVerify {
   token: string;
 }
 
-const fetchUrl = async (host: string) => {
+const fetchUrlRequest = async (host: string) => {
   const response = await fetch(`${config.server_url}/oauth/url?host=${host}`);
   const result   = await response.json();
 
@@ -34,8 +37,8 @@ const fetchUrl = async (host: string) => {
   throw result as LaguneServerError;
 };
 
-const verifyToken = async (host: string, code: string) => {
-  const response = await fetch(`${config.server_url}/oauth/url`, {
+const verifyCodeRequest = async (host: string, code: string) => {
+  const response = await fetch(`${config.server_url}/oauth/verify`, {
     method: 'POST',
     body: JSON.stringify({ host, code }),
   });
@@ -48,18 +51,29 @@ const verifyToken = async (host: string, code: string) => {
   throw result as LaguneServerError;
 };
 
-
-const fetchLoginUrlWorker = bindAsyncAction(fetchLoginUrl)(
+const fetchLoginUrlWorker = bindAsyncAction(fetchLoginUrlProcess)(
   function* (payload): SagaIterator {
     const { host } = payload;
-    const { url } = yield call(fetchUrl, host);
+    const result: LaguneUrl = yield call(fetchUrlRequest, host);
 
-    shell.openExternal(url);
+    // Open authorization page in default browser
+    shell.openExternal(result.url);
 
-    return url;
+    return result;
+  },
+);
+
+const verifyCodeWorker = bindAsyncAction(verifyCodeProcess)(
+  function* (payload): SagaIterator {
+    const { code } = payload;
+    const host: string = yield select((state: RootState) => state.login.host);
+    const result: LaguneVerify = yield call(verifyCodeRequest, host, code);
+
+    return result;
   },
 );
 
 export default function* loginSaga () {
-  yield takeLatest<Action<{ host: string }>>(fetchLoginUrlSubmit, (action) => fetchLoginUrlWorker(action.payload));
+  yield takeEvery<Action<{ host: string }>>(fetchLoginUrl, ({ payload }) => fetchLoginUrlWorker(payload));
+  yield takeEvery<Action<{ code: string }>>(verifyCode,    ({ payload }) => verifyCodeWorker(payload));
 }

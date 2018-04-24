@@ -1,0 +1,23 @@
+.button {
+  cursor: pointer;
+  padding: 6px 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 999px;
+  color: $white;
+  border: none;
+  background-color: $highlight-text-color;
+
+  &:focus, &:active {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: lighten($highlight-text-color, 0.8);
+  }
+
+  &--skeleton,
+  &--skeleton:hover {
+    background-color: transparent;
+  }
+}

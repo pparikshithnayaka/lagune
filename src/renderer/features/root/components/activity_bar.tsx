@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 interface ActivityBarItem {
   icon: string;
@@ -44,13 +44,13 @@ export default class ActivityBar extends React.PureComponent {
         {
           items.map((item, i) => (
             <div key={`${i}-${item.to}`} className='activity-bar__item'>
-              <Link to={item.text} className='activity-bar__link'>
+              <NavLink to={item.text} className='activity-bar__link'>
                 <i className={`activity-bar__icon ${item.icon}`} />
 
-                <span className='activity-bar__text'>
+                <span className='activity-bar__text invisible'>
                   {item.text}
                 </span>
-              </Link>
+              </NavLink>
             </div>
           ))
         }

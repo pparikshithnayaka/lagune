@@ -15,7 +15,7 @@ function createWindow () {
     width: 380,
     minWidth : 380,
     show: false,
-    titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'hidden-inset',
+    titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'hiddenInset',
     webPreferences: {
       webSecurity: false,
     },

@@ -1,4 +1,12 @@
 .columns {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: $base-color;
+}
+
+.column {
+  flex-grow: 1;
 }

@@ -1,0 +1,7 @@
+.animated-swtich {
+  position: relative;
+
+  & > * {
+    position: absolute;
+  }
+}
