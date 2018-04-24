@@ -1,2 +1,7 @@
 {
+  "login.title_bar": "Add new account",
+  "login.username_form.title": "Your username",
+  "login.username_form.description_short": "Why authorization required?",
+  "login.username_form.description_long": "Since Lagune have to send requests from its client, you need to authorize it in Mastodon for using Lagune. Input your username to from above and paste the code after authorization.",
+  "login.code_form.title": "Confirm your code"
 }
