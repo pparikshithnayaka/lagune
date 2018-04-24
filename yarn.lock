@@ -780,6 +780,12 @@
   version "2.3.7"
   resolved "https://registry.yarnpkg.com/@types/react-intl/-/react-intl-2.3.7.tgz#40bae586f11d19894621ed40170dd75c3e0f5708"
 
+"@types/react-motion@^0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@types/react-motion/-/react-motion-0.0.26.tgz#16ba807ae3c4bf3cb67791c91bdfa9074ceb5ec9"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-redux@^5.0.15":
   version "5.0.16"
   resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-5.0.16.tgz#46f1b2043abd2b4364a857100abf5e5a6ef94bf0"
@@ -6977,7 +6983,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.0, prop-types@^15.5.4, prop-types@^15.6.0:
+prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -7091,7 +7097,7 @@ querystringify@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
 
-raf@^3.4.0:
+raf@^3.1.0, raf@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.0.tgz#a28876881b4bc2ca9117d4138163ddb80f781575"
   dependencies:
@@ -7185,6 +7191,14 @@ react-is@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
 
+react-motion@^0.5.0, react-motion@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/react-motion/-/react-motion-0.5.2.tgz#0dd3a69e411316567927917c6626551ba0607316"
+  dependencies:
+    performance-now "^0.2.0"
+    prop-types "^15.5.8"
+    raf "^3.1.0"
+
 react-reconciler@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.7.0.tgz#9614894103e5f138deeeb5eabaf3ee80eb1d026d"
@@ -7205,7 +7219,7 @@ react-redux@^5.0.7:
     loose-envify "^1.1.0"
     prop-types "^15.6.0"
 
-react-router-dom@^4.2.2:
+react-router-dom@^4.1.1, react-router-dom@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
   dependencies:
@@ -7215,6 +7229,14 @@ react-router-dom@^4.2.2:
     prop-types "^15.5.4"
     react-router "^4.2.0"
     warning "^3.0.0"
+
+react-router-transition@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-router-transition/-/react-router-transition-1.2.1.tgz#167702d122ca6de339cdd005b95d74707e1c7e77"
+  dependencies:
+    prop-types "^15.5.10"
+    react-motion "^0.5.0"
+    react-router-dom "^4.1.1"
 
 react-router@^4.2.0:
   version "4.2.0"
