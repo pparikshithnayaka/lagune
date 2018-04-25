@@ -10,11 +10,12 @@ export interface LaguneUrl {
 }
 
 export interface LaguneVerify {
-  me: Mastodon.Credentials;
-  token: string;
+  access_token: string;
+  account: Mastodon.Credentials;
+  instance: Mastodon.Instance;
 }
 
-export const fetchUrl = async (host: string) => {
+export const fetchUrlRequest = async (host: string) => {
   const response = await fetch(`${config.server_url}/oauth/url?host=${host}`);
   const result   = await response.json();
 
@@ -25,10 +26,11 @@ export const fetchUrl = async (host: string) => {
   throw result as LaguneServerError;
 };
 
-export const verifyToken = async (host: string, code: string) => {
-  const response = await fetch(`${config.server_url}/oauth/url`, {
+export const verifyCodeRequest = async (host: string, code: string) => {
+  const response = await fetch(`${config.server_url}/oauth/verify`, {
     method: 'POST',
     body: JSON.stringify({ host, code }),
+    headers: { 'Content-Type': 'application/json' },
   });
   const result   = await response.json();
 
