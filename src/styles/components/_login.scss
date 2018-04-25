@@ -46,16 +46,7 @@
   }
 }
 
-.login__description {
-  background-color: $primary-color;
-  color: $inverted-text-color;
+.login__create-account {
+  line-height: 1.4;
   font-size: 14px;
-  border-radius: 6px;
-  padding: 8px 12px;
-  box-shadow: 0px 2px 8px rgba($shadow-color, 0.15);
-
-  strong {
-    display: block;
-    font-weight: bold;
-  }
 }

@@ -1,7 +1,6 @@
 {
   "login.title_bar": "新しいアカウントを追加",
   "login.username_form.title": "あなたのユーザー名",
-  "login.username_form.description_short": "認証が必要な理由:",
-  "login.username_form.description_long": "Laguneの利用を開始するには，クライアントからリクエストを送信するためにMastodonで認証する必要があります。上のフォームにあなたのユーザー名を入力して認証し，認証コードを貼り付けてください。",
-  "login.code_form.title": "認証コードを入力"
+  "login.code_form.title": "認証コードを入力",
+  "login.create_account": "まだアカウントを持っていませんか？お好みのインスタンスから簡単にサインアップできます．"
 }

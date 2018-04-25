@@ -51,6 +51,15 @@ p {
   line-height: 1.6;
 }
 
+a {
+  color: $darker-text-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .invisible {
   display: none !important;
 }

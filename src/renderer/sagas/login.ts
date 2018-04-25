@@ -22,8 +22,9 @@ interface LaguneUrl {
 }
 
 interface LaguneVerify {
-  me: Mastodon.Credentials;
-  token: string;
+  access_token: string;
+  account: Mastodon.Credentials;
+  instance: Mastodon.Instance;
 }
 
 const fetchUrlRequest = async (host: string) => {
@@ -41,6 +42,7 @@ const verifyCodeRequest = async (host: string, code: string) => {
   const response = await fetch(`${config.server_url}/oauth/verify`, {
     method: 'POST',
     body: JSON.stringify({ host, code }),
+    headers: { 'Content-Type': 'application/json' },
   });
   const result   = await response.json();
 

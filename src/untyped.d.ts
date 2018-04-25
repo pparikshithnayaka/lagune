@@ -12,6 +12,7 @@ declare namespace ReactRouterTransition {
       runOnMount?: boolean;
     }
   }
+
   class RouteTransition extends React.Component<RouteTransition.Props> {}
 
 
@@ -19,7 +20,7 @@ declare namespace ReactRouterTransition {
     interface Props extends RouteTransition.Props {
       component: React.ReactNode;
       path: string;
-      exact: boolean;
+      exact?: boolean;
     }
   }
   class AnimatedRoute extends React.SFC<AnimatedRoute.Props> {}

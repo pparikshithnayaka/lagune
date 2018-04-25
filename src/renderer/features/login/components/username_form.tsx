@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { RouteComponentProps } from 'react-router-dom';
 import Button from '@/components/button';
+import ExternalAnchor from '@/components/external_anchor';
 
 export interface Props extends RouteComponentProps<any> {
   isSubmitting: boolean;
@@ -70,13 +71,9 @@ export default class UsernameForm extends React.PureComponent<Props, State> {
           </Button>
         </form>
 
-        <p className='login__description'>
-          <strong>
-            <FormattedMessage id='login.username_form.description_short' defaultMessage='Why authorization required?' />
-          </strong>
-
-          <FormattedMessage id='login.username_form.description_long' defaultMessage='Since Lagune have to send requests from its client, you need to authorize it in Mastodon for using Lagune. Input your username to from above and paste the code after authorization.' />
-        </p>
+        <ExternalAnchor className='login__create-account' href='https://joinmastodon.org'>
+          <FormattedMessage id='login.create_account' defaultMessage={'Don\'t you have an account yet? You can easily sign up from your favorite instance.'} />
+        </ExternalAnchor>
       </div>
     );
   }
