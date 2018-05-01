@@ -17,10 +17,10 @@ interface Props {
   [key: string]: any;
 }
 
-const ExternalAnchor: React.SFC<Props> = ({ href, children, ...rest }) => (
+const ExternalLink: React.SFC<Props> = ({ href, children, ...rest }) => (
   <a href={href} onClick={handleClick} {...rest}>
     {children}
   </a>
 );
 
-export default ExternalAnchor;
+export default ExternalLink;
