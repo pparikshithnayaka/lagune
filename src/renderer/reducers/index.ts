@@ -1,16 +1,19 @@
 import { combineReducers } from 'redux';
-import settings, { SettingsInterface } from '@/reducers/settings';
 import login, { LoginInitialState } from '@/reducers/login';
 import message, { MessageState } from '@/reducers/message';
+import meta, { MetaState } from '@/reducers/meta';
+import settings, { SettingsInterface } from '@/reducers/settings';
 
 export interface RootState {
-  settings: SettingsInterface;
   login: LoginInitialState;
   message: MessageState;
+  meta: MetaState;
+  settings: SettingsInterface;
 }
 
 export const reducer = combineReducers<RootState>({
-  settings,
   login,
   message,
+  meta,
+  settings,
 });

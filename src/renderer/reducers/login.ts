@@ -21,7 +21,10 @@ const intiialState: LoginInitialState = {
 };
 
 export default reducerWithInitialState(intiialState)
-  .case(fetchLoginUrlProcess.started, (state, payload) => ({ ...state, host: payload.host, is_submitting: true }))
+  .case(fetchLoginUrlProcess.started, (state, payload) => Object.assign({}, state, {
+    host: payload.host,
+    is_submitting: true,
+  }))
   .case(fetchLoginUrlProcess.done, (state) => ({ ...state, is_submitted: true }))
   .cases([
     fetchLoginUrlProcess.done,

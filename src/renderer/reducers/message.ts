@@ -18,5 +18,11 @@ const initialState: MessageState = {
 };
 
 export default reducerWithInitialState(initialState)
-  .case(showMessage, (state, payload) => ({ ...state, type: payload.type, text: payload.text }))
-  .case(hideMessage, (state)          => ({ ...state, type: 'hidden', text: '' }));
+  .case(showMessage, (state, payload) => Object.assign({}, state, {
+    type: payload.type,
+    text: payload.text,
+  }))
+  .case(hideMessage, (state) => Object.assign({}, state, {
+    type: 'hidden',
+    text: '',
+  }));

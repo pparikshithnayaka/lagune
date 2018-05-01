@@ -1,6 +1,6 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-interface MetaState {
+export interface MetaState {
   /** User id of authorized user */
   me?: string;
 
@@ -10,7 +10,7 @@ interface MetaState {
   /** URL of host (e.g. `https://mastodon.social`) */
   url?: string;
 
-  /** Suffix of URL which respresents version of the API */
+  /** Suffix of URL which represents version of the API */
   url_version?: string;
 
   /** URI of streaming API (e.g. `wss://mastodon.social`) */
