@@ -1,3 +1,19 @@
+
+declare namespace UpdateElectronApp {
+  interface UpdaterOptions {
+    repo?: string;
+    host?: string;
+    updateInterval?: string;
+    logger?: (message: string) => void;
+  }
+
+  declare function updater (opts: UpdaterOptions)
+}
+
+declare module 'update-electron-app' {
+  export = UpdateElectronApp.updater;
+}
+
 declare namespace ReactRouterTransition {
 
   namespace RouteTransition {
@@ -51,6 +67,6 @@ declare namespace ReactRouterTransition {
   function spring(val: number, config?: SpringHelperConfig): OpaqueConfig;
 }
 
-declare module "react-router-transition" {
+declare module 'react-router-transition' {
   export = ReactRouterTransition;
 }

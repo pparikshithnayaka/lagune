@@ -5,6 +5,7 @@ import installExtension, {
   REDUX_DEVTOOLS,
   REACT_DEVELOPER_TOOLS,
 } from 'electron-devtools-installer';
+import './autoUpdate';
 
 let mainWindow: Electron.BrowserWindow | null;
 
