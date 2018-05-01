@@ -4,8 +4,13 @@ import {
 } from '@/actions/login';
 
 export interface LoginInitialState {
+  /** Value of input element */
   host: string;
+
+  /** Whether saga work in progress */
   is_submitting: boolean;
+
+  /** Whether saga has done */
   is_submitted: boolean;
 }
 

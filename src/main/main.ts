@@ -1,3 +1,5 @@
+/* tslint:disable: no-console */
+
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
@@ -38,10 +40,8 @@ function createWindow () {
   if ( process.env.NODE_ENV === 'development' ) {
     [REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS].forEach((extension) => {
       installExtension(extension)
-        /* tslint:disable: no-console */
         .then((name) => console.log(`Added Extension:  ${name}`))
         .catch((err) => console.log('An error occurred: ', err));
-        /* tslint:disable: no-console */
     });
   }
 

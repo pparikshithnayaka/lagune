@@ -5,7 +5,10 @@ import {
 } from '@/actions/message';
 
 export interface MessageState {
+  /** Type of the message. this prop affects the color of message box */
   type: 'success'|'failure'|'hidden';
+
+  /** Text of the message box */
   text: string;
 }
 

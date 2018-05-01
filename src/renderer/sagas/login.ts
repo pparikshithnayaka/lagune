@@ -17,7 +17,7 @@ const fetchLoginUrlWorker = bindAsyncAction(fetchLoginUrlProcess)(
     const { host } = payload;
     const result: AuthClient.LaguneUrl = yield call(AuthClient.fetchUrlRequest, host);
 
-    // Open authorization page in default browser
+    // Open the authorization page in the default browser
     shell.openExternal(result.url);
 
     return result;
