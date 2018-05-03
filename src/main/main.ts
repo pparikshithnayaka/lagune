@@ -1,38 +1,46 @@
 /* tslint:disable: no-console */
-
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import updateElectronApp from 'update-electron-app';
 import installExtension, {
   REDUX_DEVTOOLS,
   REACT_DEVELOPER_TOOLS,
 } from 'electron-devtools-installer';
-import updateElectronApp from 'update-electron-app';
 
+// Electron's auto updater
+// Updates application itself if new version released in GitHub
 updateElectronApp({
   repo: 'lagunehq/lagune',
   updateInterval: '1 hour',
 });
 
+
 let mainWindow: Electron.BrowserWindow | null;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    frame: process.platform !== 'darwin',
+    show: false,
     height: 600,
     width: 380,
     minWidth : 380,
-    show: false,
+    frame: process.platform !== 'darwin',
     titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'hiddenInset',
     webPreferences: {
-      webSecurity: true,
-      nodeIntegration: false,
-      contextIsolation: true,
-      allowRunningInsecureContent: false,
+      // Security policy
+      // See: https://electronjs.org/docs/tutorial/security
+      nodeIntegration: process.env.DEV_SERVER === 'YES',
+      contextIsolation: process.env.DEV_SERVER !== 'YES',
+
+      // `DEV_SERVER` is a flag which represents whether webpack's running with dev-server
+      // If you're using webpack-dev-server, contents will be served from `http://localhost:8080`
+      // thus HTTP need to be granted while you're developing
+      webSecurity:                  (process.env.DEV_SERVER !== 'YES' && process.env.NODE_ENV !== 'development'),
+      allowRunningInsecureContent: !(process.env.DEV_SERVER !== 'YES' && process.env.NODE_ENV !== 'development'),
     },
   });
 
-  mainWindow.loadURL(process.env.WATCH ? 'http://localhost:8080' :
+  mainWindow.loadURL(process.env.DEV_SERVER === 'YES' ? 'http://localhost:8080' :
     url.format({
       pathname: path.resolve(__dirname, 'index.html'),
       protocol: 'file:',
@@ -40,6 +48,8 @@ function createWindow () {
     },
   ));
 
+  // Installing React Developer Tools
+  // and Redux DevTools
   if ( process.env.NODE_ENV === 'development' ) {
     [REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS].forEach((extension) => {
       installExtension(extension)
