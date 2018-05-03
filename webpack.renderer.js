@@ -28,7 +28,6 @@ const config = {
     filename: '[name].js',
     chunkFilename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
   },
 
   module: {
@@ -86,7 +85,6 @@ const config = {
     }),
 
     new HtmlWebpackPlugin({
-      title: 'Lagune',
       filename: 'index.html',
       template: path.resolve('./src/index.html'),
     }),
@@ -107,6 +105,7 @@ const config = {
     hot: true,
     inline: true,
     compress: true,
+    publicPath: '/',
     index: 'index.html',
     historyApiFallback: true,
     disableHostCheck: true,
