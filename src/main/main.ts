@@ -25,7 +25,10 @@ function createWindow () {
     show: false,
     titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'hiddenInset',
     webPreferences: {
-      webSecurity: false,
+      webSecurity: true,
+      nodeIntegration: false,
+      contextIsolation: true,
+      allowRunningInsecureContent: false,
     },
   });
 
