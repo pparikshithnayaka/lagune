@@ -4,9 +4,8 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 
 const config = {
   target: 'electron-main',
-
   devtool: 'source-map',
-
+  performance: { hints: false },
   context: path.resolve(__dirname, 'src'),
 
   entry: {
@@ -33,8 +32,6 @@ const config = {
     __dirname: false,
     __filename: false,
   },
-
-  performance: { hints: false },
 
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],

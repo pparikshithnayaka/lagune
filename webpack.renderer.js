@@ -8,9 +8,8 @@ require('dotenv').config();
 
 const config = {
   target: 'electron-renderer',
-
   devtool: 'source-map',
-
+  performance: { hints: false },
   context: path.resolve(__dirname, 'src'),
 
   entry: {
@@ -28,6 +27,7 @@ const config = {
     filename: '[name].js',
     chunkFilename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: process.env.DEV_SERVER ? '/' : path.resolve(__dirname, 'dist'),
   },
 
   module: {
@@ -64,8 +64,6 @@ const config = {
     __dirname: false,
     __filename: false,
   },
-
-  performance: { hints: false },
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -105,7 +103,6 @@ const config = {
     hot: true,
     inline: true,
     compress: true,
-    publicPath: '/',
     index: 'index.html',
     historyApiFallback: true,
     disableHostCheck: true,
