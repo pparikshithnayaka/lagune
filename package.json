@@ -15,8 +15,8 @@
     "build": "yarn run build:main && yarn run build:renderer",
     "build:main": "webpack --mode=${NODE_ENV} --no-progress --hide-modules --config=webpack.main.js",
     "build:renderer": "webpack --mode=${NODE_ENV} --no-progress --hide-modules --config=webpack.renderer.js",
-    "watch:dev": "cross-env NODE_ENV=development WATCH=yes yarn run watch",
-    "watch:prod": "cross-env NODE_ENV=production WATCH=yes yarn run watch",
+    "watch:dev": "cross-env NODE_ENV=development DEV_SERVER=YES yarn run watch",
+    "watch:prod": "cross-env NODE_ENV=production DEV_SERVER=YES yarn run watch",
     "watch": "yarn run build:main && webpack-dev-server --mode=${NODE_ENV} --config=webpack.renderer.js"
   },
   "engines": {

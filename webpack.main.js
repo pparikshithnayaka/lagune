@@ -47,8 +47,8 @@ const config = {
 
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        WATCH: JSON.stringify(process.env.WATCH),
+        NODE_ENV:   JSON.stringify(process.env.NODE_ENV),
+        DEV_SERVER: JSON.stringify(process.env.DEV_SERVER),
       },
     }),
 

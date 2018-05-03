@@ -81,6 +81,7 @@ const config = {
       'process.env': {
         NODE_ENV:   JSON.stringify(process.env.NODE_ENV),
         SERVER_URL: JSON.stringify(process.env.SERVER_URL),
+        DEV_SERVER: JSON.stringify(process.env.DEV_SERVER),
       },
     }),
 
