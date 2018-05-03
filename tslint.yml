@@ -17,6 +17,7 @@ rules:
   max-line-length: false
   variable-name: false
   no-shadowed-variable: false
+  no-consecutive-blank-lines: false
   interface-name:
   - true
   - never-prefix
