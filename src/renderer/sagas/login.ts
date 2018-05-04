@@ -1,5 +1,4 @@
 import { call, select, takeEvery } from 'redux-saga/effects';
-import { shell } from 'electron';
 import { RootState } from '@/reducers';
 import { Action } from 'typescript-fsa';
 import { SagaIterator } from 'redux-saga';
@@ -17,8 +16,7 @@ const fetchLoginUrlWorker = bindAsyncAction(fetchLoginUrlProcess)(
     const { host } = payload;
     const result: AuthClient.LaguneUrl = yield call(AuthClient.fetchUrlRequest, host);
 
-    // Open the authorization page in the default browser
-    shell.openExternal(result.url);
+    window.open(result.url);
 
     return result;
   },

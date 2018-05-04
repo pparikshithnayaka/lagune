@@ -1,4 +1,7 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
+import {
+  verifyCodeProcess,
+} from '@/actions/login';
 
 export interface MetaState {
   /** User id of authorized user */
@@ -19,4 +22,11 @@ export interface MetaState {
 
 const initialState: MetaState = {};
 
-export default reducerWithInitialState(initialState);
+export default reducerWithInitialState(initialState)
+  .case(verifyCodeProcess.done, (state, { result }) => Object.assign({}, state, {
+    me:            result.account.id,
+    access_token:  result.access_token,
+    url:           `https://${result.instance.uri}`,
+    url_version:   '/api/v1',
+    streaming_url: result.instance.urls.streaming_api,
+  }));
