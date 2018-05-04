@@ -2,7 +2,6 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { RouteComponentProps } from 'react-router-dom';
 import Button from '@/components/button';
-import ExternalLink from '@/components/external_link';
 
 export interface Props extends RouteComponentProps<any> {
   isSubmitting: boolean;
@@ -71,9 +70,9 @@ export default class UsernameForm extends React.PureComponent<Props, State> {
           </Button>
         </form>
 
-        <ExternalLink className='login__create-account' href='https://joinmastodon.org'>
+        <a className='login__create-account' href='https://joinmastodon.org' target='__blank'>
           <FormattedMessage id='login.create_account' defaultMessage={'Don\'t you have an account yet? You can easily sign up from your favorite instance.'} />
-        </ExternalLink>
+        </a>
       </div>
     );
   }

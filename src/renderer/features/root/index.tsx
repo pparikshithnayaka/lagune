@@ -18,7 +18,7 @@ class Root extends React.PureComponent<Props> {
 
   public render () {
     return (
-      <div className={`root root--${process.platform}`}>
+      <div className='root'>
         <ActivityBar />
 
         <div className='columns'>

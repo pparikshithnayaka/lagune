@@ -1,5 +1,5 @@
 /* tslint:disable: no-console */
-import { app, BrowserWindow } from 'electron';
+import { app, ipcMain, BrowserWindow, shell } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import updateElectronApp from 'update-electron-app';
@@ -16,7 +16,7 @@ updateElectronApp({
 });
 
 
-let mainWindow: Electron.BrowserWindow | null;
+let mainWindow: Electron.BrowserWindow;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -40,7 +40,8 @@ function createWindow () {
     },
   });
 
-  mainWindow.loadURL(process.env.DEV_SERVER === 'YES' ? 'http://localhost:8080' :
+  mainWindow.loadURL(process.env.DEV_SERVER === 'YES' ?
+    'http://localhost:8080' :
     url.format({
       pathname: path.resolve(__dirname, 'index.html'),
       protocol: 'file:',
@@ -64,8 +65,10 @@ function createWindow () {
     }
   });
 
-  mainWindow.on('closed', () => {
-    mainWindow = null;
+  // Overwrite target='__blank' behaviour to open in the default browser
+  mainWindow.webContents.on('new-window', (e: Event, arg: string) => {
+    e.preventDefault();
+    shell.openExternal(arg);
   });
 }
 
