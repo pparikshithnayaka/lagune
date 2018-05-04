@@ -1,12 +1,12 @@
 /* tslint:disable: no-console */
-import { app, ipcMain, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, shell } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import updateElectronApp from 'update-electron-app';
-import installExtension, {
-  REDUX_DEVTOOLS,
-  REACT_DEVELOPER_TOOLS,
-} from 'electron-devtools-installer';
+// import installExtension, {
+//   REDUX_DEVTOOLS,
+//   REACT_DEVELOPER_TOOLS,
+// } from 'electron-devtools-installer';
 
 // Electron's auto updater
 // Updates application itself if new version released in GitHub
@@ -51,18 +51,13 @@ function createWindow () {
 
   // Installing React Developer Tools
   // and Redux DevTools
-  if ( process.env.NODE_ENV === 'development' ) {
-    [REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS].forEach((extension) => {
-      installExtension(extension)
-        .then((name) => console.log(`Added Extension:  ${name}`))
-        .catch((err) => console.log('An error occurred: ', err));
-    });
-  }
+  // if ( process.env.NODE_ENV === 'development' ) {
+  //   installExtension(REDUX_DEVTOOLS);
+  //   installExtension(REACT_DEVELOPER_TOOLS);
+  // }
 
   mainWindow.once('ready-to-show', () => {
-    if ( mainWindow !== null ) {
-      mainWindow.show();
-    }
+    mainWindow.show();
   });
 
   // Overwrite target='__blank' behaviour to open in the default browser
