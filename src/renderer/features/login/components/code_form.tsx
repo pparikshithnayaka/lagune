@@ -49,12 +49,7 @@ export default class CodeForm extends React.PureComponent<Props, State> {
             onChange={this.handleChange}
           />
 
-          <Button
-            className='login-form__button'
-            text='Submit'
-            skeleton
-            onClick={this.handleSubmit}
-          >
+          <Button className='login-form__button' text='Submit' skeleton>
             <i className='fas fa-paper-plane' aria-hidden='true' />
           </Button>
         </form>
