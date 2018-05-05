@@ -85,6 +85,20 @@ const config = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve('./src/index.html'),
+
+      /** Injecting Content-Security-Policy if production build */
+      meta: process.env.NODE_ENV === 'production' && {
+        'Content-Security-Policy': [
+          "default-src 'none'",
+          "img-src 'self' https: data:",
+          "media-src 'none' child-src 'self'",
+          "object-src 'self'",
+          "script-src 'self' 'unsafe-inline'",
+          "style-src 'self' 'unsafe-inline'",
+          "connect-src 'self' https:",
+          "font-src 'self' https:",
+        ].join(';')
+      }
     }),
 
     new ExtractTextWebpackPlugin({
