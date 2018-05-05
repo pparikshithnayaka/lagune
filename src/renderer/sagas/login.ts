@@ -1,8 +1,8 @@
-import { call, select, takeEvery } from 'redux-saga/effects';
-import { RootState } from '@/reducers';
-import { Action } from 'typescript-fsa';
+import { call, select } from 'redux-saga/effects';
+import { takeEveryFsa } from '@/sagas/utils';
 import { SagaIterator } from 'redux-saga';
 import { bindAsyncAction } from 'typescript-fsa-redux-saga';
+import { RootState } from '@/reducers';
 import {
   fetchLoginUrl,
   fetchLoginUrlProcess,
@@ -13,8 +13,7 @@ import * as AuthClient from '@/auth';
 
 const fetchLoginUrlWorker = bindAsyncAction(fetchLoginUrlProcess)(
   function* (payload): SagaIterator {
-    const { host } = payload;
-    const result: AuthClient.LaguneUrl = yield call(AuthClient.fetchUrlRequest, host);
+    const result: AuthClient.LaguneUrl = yield call(AuthClient.fetchUrlRequest, payload);
 
     window.open(result.url);
 
@@ -24,15 +23,14 @@ const fetchLoginUrlWorker = bindAsyncAction(fetchLoginUrlProcess)(
 
 const verifyCodeWorker = bindAsyncAction(verifyCodeProcess)(
   function* (payload): SagaIterator {
-    const { code } = payload;
     const host: string = yield select((state: RootState) => state.login.host);
-    const result: AuthClient.LaguneVerify = yield call(AuthClient.verifyCodeRequest, host, code);
+    const result: AuthClient.LaguneVerify = yield call(AuthClient.verifyCodeRequest, host, payload);
 
     return result;
   },
 );
 
 export default function* loginSaga () {
-  yield takeEvery<Action<{ host: string }>>(fetchLoginUrl, ({ payload }) => fetchLoginUrlWorker(payload));
-  yield takeEvery<Action<{ code: string }>>(verifyCode,    ({ payload }) => verifyCodeWorker(payload));
+  yield takeEveryFsa(fetchLoginUrl, ({ payload }) => fetchLoginUrlWorker(payload));
+  yield takeEveryFsa(verifyCode,    ({ payload }) => verifyCodeWorker(payload));
 }

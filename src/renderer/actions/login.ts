@@ -2,18 +2,18 @@ import Mastodon from '@lagunehq/core';
 import actionCreatorFactory from 'typescript-fsa';
 const actionCreator = actionCreatorFactory('Login');
 
-export const fetchLoginUrl = actionCreator<{ host: string }>('FETCH_URL');
+export const fetchLoginUrl = actionCreator<string>('FETCH_URL');
 
 export const fetchLoginUrlProcess = actionCreator.async<
-  { host: string },
+  string,
   { url: string },
   Mastodon.Error
 >('FETCH_URL_PROCESS');
 
-export const verifyCode = actionCreator<{ code: string}>('VERIFY_CODE');
+export const verifyCode = actionCreator<string>('VERIFY_CODE');
 
 export const verifyCodeProcess = actionCreator.async<
-  { code: string },
+  string,
   any,
   Mastodon.Error
 >('VERIFY_CODE_PROCESS');
