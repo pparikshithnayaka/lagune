@@ -69,6 +69,6 @@ rules:
   react-a11y-titles: true
   react-anchor-blank-noopener: true
   react-iframe-missing-sandbox: true
-  react-no-dangerous-html: true
+  react-no-dangerous-html: false
   react-this-binding-issue: true
   react-unused-props-and-state: true
