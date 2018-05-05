@@ -30,9 +30,6 @@
     "removeComments": true,
     "pretty": true
   },
-  "files": [
-    "src/untyped.d.ts"
-  ],
   "include": [
     "src/**/*"
   ],
