@@ -4,3 +4,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b09147a4ae45990c99a5/maintainability)](https://codeclimate.com/github/LaguneHQ/lagune/maintainability)
 
 DesktopのMastodonクライアントを作るかもしれません．
+
+Snapshot (WIP):
+![Snapshot](https://i.imgur.com/Y4MTzxV.jpg)
