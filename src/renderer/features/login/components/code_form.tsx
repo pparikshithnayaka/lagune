@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { RouteComponentProps } from 'react-router-dom';
+import { verifyCode } from '@/actions/login';
 import Button from '@/components/button';
 
 export interface Props extends RouteComponentProps<any> {
-  onSubmit: (code: string) => void;
+  onSubmit: typeof verifyCode;
 }
 
 interface State {

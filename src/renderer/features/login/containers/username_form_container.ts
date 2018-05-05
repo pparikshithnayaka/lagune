@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { RootState } from '@/reducers';
-import { Dispatch } from 'redux';
+import { injectIntl } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { fetchLoginUrl } from '@/actions/login';
 import UsernameForm, { Props } from '@/features/login/components/username_form';
@@ -10,13 +10,7 @@ const mapStateToProps = (state: RootState) => ({
   isSubmitted: state.login.is_submitted,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<void>) => ({
-  onSubmit (host: string) {
-    dispatch(fetchLoginUrl({ host }));
-  },
-});
-
-export default withRouter<Props>(connect(
+export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(UsernameForm));
+  { onSubmit: fetchLoginUrl },
+)(withRouter<Props>(injectIntl<Props>(UsernameForm)));

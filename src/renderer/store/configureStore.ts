@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { Action } from 'typescript-fsa';
 import { reducer, RootState } from '@/reducers';
-import errorMiddleware from '@/middlewares/error';
 import rootSaga from '@/sagas';
+import createSagaMiddleware from 'redux-saga';
 
 export function configureStore () {
   const composeEnhancers = (
@@ -12,11 +12,12 @@ export function configureStore () {
 
   const sagaMiddleware = createSagaMiddleware();
 
-  const store = createStore<RootState>(
+  const store = createStore<RootState, Action<any>, {}, {}>(
     reducer,
-    composeEnhancers(applyMiddleware(sagaMiddleware, errorMiddleware())),
+    composeEnhancers(applyMiddleware(sagaMiddleware)),
   );
 
   sagaMiddleware.run(rootSaga);
+
   return store;
 }
