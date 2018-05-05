@@ -3,10 +3,10 @@ import { app, BrowserWindow, shell } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import updateElectronApp from 'update-electron-app';
-// import installExtension, {
-//   REDUX_DEVTOOLS,
-//   REACT_DEVELOPER_TOOLS,
-// } from 'electron-devtools-installer';
+import installExtension, {
+  REDUX_DEVTOOLS,
+  REACT_DEVELOPER_TOOLS,
+} from 'electron-devtools-installer';
 
 // Electron's auto updater
 // Updates application itself if new version released in GitHub
@@ -49,16 +49,16 @@ function createWindow () {
     },
   ));
 
-  // Installing React Developer Tools
-  // and Redux DevTools
-  // if ( process.env.NODE_ENV === 'development' ) {
-  //   installExtension(REDUX_DEVTOOLS);
-  //   installExtension(REACT_DEVELOPER_TOOLS);
-  // }
-
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
-  });
+
+    // Installing React Developer Tools
+    // and Redux DevTools
+    if ( process.env.NODE_ENV === 'development' ) {
+      installExtension(REDUX_DEVTOOLS.id);
+      installExtension(REACT_DEVELOPER_TOOLS.id);
+    }
+ });
 
   // Overwrite target='__blank' behaviour to open in the default browser
   mainWindow.webContents.on('new-window', (e: Event, arg: string) => {
