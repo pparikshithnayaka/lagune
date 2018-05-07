@@ -7,6 +7,7 @@ interface Props {
   children?: React.ReactNode;
   disabled?: boolean;
   skeleton?: boolean;
+  linkButton?: boolean;
   tabIndex?: number;
   onClick?: (...args: any[]) => void;
 }
@@ -16,6 +17,8 @@ export default class Button extends React.PureComponent<Props> {
   public static defaultProps: Partial<Props> = {
     className: '',
     disabled: false,
+    skeleton: false,
+    linkButton: false,
     tabIndex: 0,
   };
 
@@ -26,8 +29,12 @@ export default class Button extends React.PureComponent<Props> {
   }
 
   public render () {
-    const { className, text, children, disabled, skeleton, onClick, ...rest } = this.props;
-    const classnames = classNames('button', className, { 'button--skeleton': skeleton });
+    const { className, text, children, disabled, onClick, linkButton, skeleton, ...rest } = this.props;
+    const classnames = classNames(className, {
+      'button': !this.props.linkButton,
+      'link-button': this.props.linkButton,
+      'button--skeleton': this.props.skeleton,
+    });
 
     return (
       <button
