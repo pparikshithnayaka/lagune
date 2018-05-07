@@ -1,3 +1,14 @@
+declare module '*.png';
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.gif';
+declare module '*.ttf';
+declare module '*.otf';
+declare module '*.eot';
+declare module '*.svg';
+declare module '*.woff';
+declare module '*.woff2';
+
 
 declare namespace UpdateElectronApp {
   interface UpdaterOptions {
@@ -13,6 +24,7 @@ declare namespace UpdateElectronApp {
 declare module 'update-electron-app' {
   export = UpdateElectronApp.updater;
 }
+
 
 declare namespace ReactRouterTransition {
 
