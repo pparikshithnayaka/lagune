@@ -1,17 +1,25 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
+interface Props {
+  me: string;
+}
+
 interface ActivityBarItem {
   icon: string;
   text: string;
-  to?: string;
-  onClick?: (arg: any) => any;
+  to: string;
 }
 
-export default class ActivityBar extends React.PureComponent {
+export default class ActivityBar extends React.PureComponent<Props> {
 
   public render () {
     const items: ActivityBarItem[] = [
+      {
+        icon: 'fas fa-sign-in-alt',
+        text: 'Sign in',
+        to:   '/login/username',
+      },
       {
         icon: 'fas fa-home',
         text: 'Home',
@@ -39,12 +47,20 @@ export default class ActivityBar extends React.PureComponent {
       },
     ];
 
+    if ( this.props.me ) {
+      items.push({
+        icon: 'fas fa-user',
+        text: 'My profile',
+        to:   `/accounts/${this.props.me}`,
+      });
+    }
+
     return (
       <nav className='activity-bar'>
         {
           items.map((item, i) => (
             <div key={`${i}-${item.to}`} className='activity-bar__item'>
-              <NavLink to={item.text} className='activity-bar__link'>
+              <NavLink to={item.to} className='activity-bar__link'>
                 <i className={`activity-bar__icon ${item.icon}`} />
 
                 <span className='activity-bar__text invisible'>
