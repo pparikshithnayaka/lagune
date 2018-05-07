@@ -1,16 +1,14 @@
 import { Middleware } from 'redux';
-import { Action } from 'typescript-fsa';
-import { showMessage } from '@/actions/message';
-import Mastodon from '@lagunehq/core';
+import { ipcRenderer as ipc } from 'electron';
 
 export default function errorsMiddleware (): Middleware {
-  return ({ dispatch }) => (next) => (action) => {
+  return () => (next) => (action) => {
     if (action.type) {
       if (/FAIL$/g.test(action.type)) {
         if (action.payload.error) {
-          dispatch(showMessage({ type: 'failure', text: action.payload.error }));
+          ipc.send('show-error', action.payload.error);
         } else {
-          dispatch(showMessage({ type: 'failure', text: 'An unexpected error occurred.' }));
+          ipc.send('show-error', 'An unexpected error occurred.');
         }
       }
     }

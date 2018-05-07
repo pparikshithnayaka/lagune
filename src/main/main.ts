@@ -1,5 +1,5 @@
 /* tslint:disable: no-console */
-import { app, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, shell, dialog, ipcMain as ipc } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import updateElectronApp from 'update-electron-app';
@@ -79,4 +79,12 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+ipc.on('show-error', (_: Event, message: string) => {
+  dialog.showMessageBox({
+    type: 'error',
+    buttons: [],
+    message,
+  });
 });
