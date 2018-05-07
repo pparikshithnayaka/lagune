@@ -1,25 +1,25 @@
 import { combineReducers } from 'redux';
-import accounts, { AccountsState } from '@/reducers/accounts';
+// import accounts, { AccountsState } from '@/reducers/accounts';
 import login, { LoginInitialState } from '@/reducers/login';
 import message, { MessageState } from '@/reducers/message';
-import meta, { MetaState } from '@/reducers/meta';
+import verified_accounts, { VerifiedAccountsState } from '@/reducers/verified_accounts';
 import settings, { SettingsInterface } from '@/reducers/settings';
 import activeAccount, { ActiveAccountState } from '@/reducers/active_account';
 
 export interface RootState {
-  accounts: AccountsState;
+  // accounts: AccountsState;
   login: LoginInitialState;
   message: MessageState;
-  meta: MetaState;
+  verified_accounts: VerifiedAccountsState;
   settings: SettingsInterface;
   activeAccount: ActiveAccountState;
 }
 
 export const reducer = combineReducers<RootState>({
-  accounts,
+  // accounts,
   login,
   message,
-  meta,
+  verified_accounts,
   settings,
   activeAccount,
 });

@@ -1,29 +1,30 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { fetchVerifiedAccounts } from '@/actions/verified_account';
 import { RouteComponentProps, withRouter, Switch, Route } from 'react-router-dom';
-import ActivityBar from '@/features/root/components/activity_bar';
+import ActivityBarContainer from '@/features/root/containers/activity_bar_container';
 import Login from '@/features/login';
+import Accounts from '@/features/accounts';
 
-export interface Props extends RouteComponentProps<any> {
+export interface Props extends RouteComponentProps<{}> {
+  onLoad: typeof fetchVerifiedAccounts;
 }
 
 class Root extends React.PureComponent<Props> {
 
   public componentDidMount () {
-    const isLoggedIn = false;
-
-    if ( !isLoggedIn ) {
-      this.props.history.push('/login/username');
-    }
+    this.props.onLoad({});
   }
 
   public render () {
     return (
       <div className='root'>
-        <ActivityBar />
+        <ActivityBarContainer />
 
         <div className='columns'>
           <Switch>
             <Route path='/login' component={Login} />
+            <Route path='/accounts/:accountId' component={Accounts} />
           </Switch>
         </div>
       </div>
@@ -32,4 +33,7 @@ class Root extends React.PureComponent<Props> {
 
 }
 
-export default withRouter<Props>(Root);
+export default connect(
+  null,
+  { onLoad: fetchVerifiedAccounts },
+)(withRouter<Props>(Root));

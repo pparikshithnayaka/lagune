@@ -1,28 +1,13 @@
 import Dexie from 'dexie';
-
-export interface Meta {
-  me: string;
-  access_token: string;
-  url: string;
-  url_version: string;
-  streaming_url: string;
-}
+import * as Lagune from '@@/typings/lagune';
 
 class LaguneDB extends Dexie {
-
-  public meta!: Dexie.Table<Meta, number>;
+  public verified_accounts!: Dexie.Table<Lagune.VerifiedAccount, number>;
 
   constructor () {
     super('Lagune');
-
     this.version(1).stores({
-      meta: [
-        '&me',
-        'access_token',
-        'url',
-        'url_version',
-        'streaming_url',
-      ].join(','),
+      verified_accounts: '++id, me, access_token, url, url_version, streaming_url',
     });
   }
 }

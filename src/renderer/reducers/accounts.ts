@@ -1,4 +1,4 @@
-import { reducerWithoutInitialState } from 'typescript-fsa-reducers';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import Mastodon from '@lagunehq/core';
 import {
   verifyCodeProcess,
@@ -6,5 +6,7 @@ import {
 
 export interface AccountsState { [key: string]: Mastodon.Account; }
 
-export default reducerWithoutInitialState<AccountsState>()
+const initialState: AccountsState = {};
+
+export default reducerWithInitialState<AccountsState>(initialState)
   .case(verifyCodeProcess.done, (state, { result }) => ({ ...state, [result.account.id]: result.account }));
