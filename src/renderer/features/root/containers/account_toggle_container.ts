@@ -6,4 +6,4 @@ const mapStateToProps = (state: RootState) => ({
   accounts: state.verified_accounts,
 });
 
-connect(mapStateToProps)(AccountToggle);
+export default connect(mapStateToProps)(AccountToggle);

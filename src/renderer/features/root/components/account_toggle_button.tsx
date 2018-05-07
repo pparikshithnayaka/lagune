@@ -1,15 +1,19 @@
+import { fetchAccount } from '@/actions/accounts';
 import Button from '@/components/button';
 import Mastodon from '@lagunehq/core';
 import * as React from 'react';
 
 export interface Props {
-  account?: Mastodon.Credentials;
+  account?: Mastodon.Account;
+  accountId: string;
+  fetchAccount: typeof fetchAccount;
 }
 
 export default class AccountToggleButton extends React.PureComponent<Props> {
 
   public componentDidMount () {
     if ( !this.props.account ) {
+      this.props.fetchAccount(this.props.accountId);
     }
   }
 

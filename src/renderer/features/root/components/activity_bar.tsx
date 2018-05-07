@@ -1,3 +1,4 @@
+import AccountToggleContainer from '@/features/root/containers/account_toggle_container';
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -57,6 +58,8 @@ export default class ActivityBar extends React.PureComponent<Props> {
 
     return (
       <nav className='activity-bar'>
+        <AccountToggleContainer />
+
         {
           items.map((item, i) => (
             <div key={`${i}-${item.to}`} className='activity-bar__item'>

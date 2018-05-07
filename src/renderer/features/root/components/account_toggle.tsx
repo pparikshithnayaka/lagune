@@ -1,8 +1,9 @@
-import Mastodon from '@lagunehq/core';
+import AccountToggleButtonContainer from '@/features/root/containers/account_toggle_button_container';
+import * as Lagune from '@@/typings/lagune';
 import * as React from 'react';
 
 export interface Props {
-  accounts: Mastodon.Credentials[];
+  accounts: Lagune.VerifiedAccount[];
 }
 
 export default class AccountToggle extends React.PureComponent<Props> {
@@ -15,10 +16,8 @@ export default class AccountToggle extends React.PureComponent<Props> {
         <ul className='account-toggle__list'>
           {
             accounts.map((account, i) => (
-              <li className='account-toggle__list-item' key={`${i}-${account.acct}`}>
-                <button>
-                  <img src={account.avatar_static} alt={account.display_name} />
-                </button>
+              <li className='account-toggle__list-item' key={`${i}-${account.url}`}>
+                <AccountToggleButtonContainer accountId={account.me} />
               </li>
             ))
           }
