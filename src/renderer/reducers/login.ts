@@ -1,6 +1,6 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import {
-  fetchLoginUrlProcess,
+  fetchAuthorizationUrlProcess,
 } from '@/actions/login';
 
 export interface LoginInitialState {
@@ -21,12 +21,12 @@ const intiialState: LoginInitialState = {
 };
 
 export default reducerWithInitialState(intiialState)
-  .case(fetchLoginUrlProcess.started, (state, payload) => Object.assign({}, state, {
+  .case(fetchAuthorizationUrlProcess.started, (state, payload) => Object.assign({}, state, {
     host: payload,
     is_submitting: true,
   }))
-  .case(fetchLoginUrlProcess.done, (state) => ({ ...state, is_submitted: true }))
+  .case(fetchAuthorizationUrlProcess.done, (state) => ({ ...state, is_submitted: true }))
   .cases([
-    fetchLoginUrlProcess.done,
-    fetchLoginUrlProcess.failed,
+    fetchAuthorizationUrlProcess.done,
+    fetchAuthorizationUrlProcess.failed,
   ], (state) => ({ ...state, is_submitting: false }));

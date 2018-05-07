@@ -15,7 +15,7 @@ export interface Credentials {
   instance: Mastodon.Instance;
 }
 
-export const fetchUrl = async (host: string) => {
+export const fetchAuthorizationUrl = async (host: string) => {
   const response = await fetch(`${config.server_url}/oauth/url?host=${host}`);
   const result   = await response.json();
 
@@ -26,8 +26,8 @@ export const fetchUrl = async (host: string) => {
   throw result as ServerError;
 };
 
-export const identify = async (host: string, code: string) => {
-  const response = await fetch(`${config.server_url}/oauth/identify`, {
+export const verifyCode = async (host: string, code: string) => {
+  const response = await fetch(`${config.server_url}/oauth/verify`, {
     method: 'POST',
     body: JSON.stringify({ host, code }),
     headers: { 'Content-Type': 'application/json' },

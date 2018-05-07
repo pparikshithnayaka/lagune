@@ -10,10 +10,10 @@ export const fetchAuthorizationUrlProcess = actionCreator.async<
   Mastodon.Error
 >('FETCH_URL_PROCESS');
 
-export const identifyCode = actionCreator<string>('IDENTIFY_CODE');
+export const verifyCode = actionCreator<string>('VERIFY_CODE');
 
-export const identifyCodeProcess = actionCreator.async<
+export const verifyCodeProcess = actionCreator.async<
   string,
   any,
   Mastodon.Error
->('IDENTIFY_CODE_PROCESS');
+>('VERIFY_CODE_PROCESS');

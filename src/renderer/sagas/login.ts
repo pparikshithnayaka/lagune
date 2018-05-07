@@ -6,8 +6,8 @@ import { RootState } from '@/reducers';
 import {
   fetchAuthorizationUrl,
   fetchAuthorizationUrlProcess,
-  identifyCode,
-  identifyCodeProcess,
+  verifyCode,
+  verifyCodeProcess,
 } from '@/actions/login';
 import * as AuthClient from '@/auth';
 
@@ -22,10 +22,10 @@ const fetchAuthorizationUrlWorker = bindAsyncAction(fetchAuthorizationUrlProcess
   },
 );
 
-const identifyCodeWorker = bindAsyncAction(identifyCodeProcess)(
+const verifyCodeWorker = bindAsyncAction(verifyCodeProcess)(
   function* (code): SagaIterator {
     const host: string = yield select((state: RootState) => state.login.host);
-    const result: AuthClient.Credentials = yield call(AuthClient.identify, host, code);
+    const result: AuthClient.Credentials = yield call(AuthClient.verify, host, code);
 
     return result;
   },
@@ -33,5 +33,5 @@ const identifyCodeWorker = bindAsyncAction(identifyCodeProcess)(
 
 export default function* loginSaga () {
   yield takeEvery<Action<string>>(fetchAuthorizationUrl, ({ payload }) => fetchAuthorizationUrlWorker(payload));
-  yield takeEvery<Action<string>>(identifyCode,          ({ payload }) => identifyCodeWorker(payload));
+  yield takeEvery<Action<string>>(verifyCode,          ({ payload }) => verifyCodeWorker(payload));
 }
