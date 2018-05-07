@@ -1,33 +1,33 @@
 import Mastodon from '@lagunehq/core';
 import config from '@/config';
 
-export interface LaguneServerError {
+export interface ServerError {
   error: string;
 }
 
-export interface LaguneUrl {
+export interface Url {
   url: string;
 }
 
-export interface LaguneVerify {
+export interface Credentials {
   access_token: string;
   account: Mastodon.Credentials;
   instance: Mastodon.Instance;
 }
 
-export const fetchUrlRequest = async (host: string) => {
+export const fetchUrl = async (host: string) => {
   const response = await fetch(`${config.server_url}/oauth/url?host=${host}`);
   const result   = await response.json();
 
   if (response.ok) {
-    return result as LaguneUrl;
+    return result as Url;
   }
 
-  throw result as LaguneServerError;
+  throw result as ServerError;
 };
 
-export const verifyCodeRequest = async (host: string, code: string) => {
-  const response = await fetch(`${config.server_url}/oauth/verify`, {
+export const identify = async (host: string, code: string) => {
+  const response = await fetch(`${config.server_url}/oauth/identify`, {
     method: 'POST',
     body: JSON.stringify({ host, code }),
     headers: { 'Content-Type': 'application/json' },
@@ -35,8 +35,8 @@ export const verifyCodeRequest = async (host: string, code: string) => {
   const result   = await response.json();
 
   if (response.ok) {
-    return result as LaguneVerify;
+    return result as Credentials;
   }
 
-  throw result as LaguneServerError;
+  throw result as ServerError;
 };
