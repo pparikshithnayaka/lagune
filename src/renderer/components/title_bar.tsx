@@ -1,6 +1,6 @@
-import * as React from 'react';
 import Button from '@/components/button';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 interface Props extends RouteComponentProps<{}> {}
 

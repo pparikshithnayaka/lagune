@@ -1,5 +1,5 @@
-import actionCreatorFactory from 'typescript-fsa';
 import Mastodon from '@lagunehq/core';
+import actionCreatorFactory from 'typescript-fsa';
 
 const actionCreator = actionCreatorFactory('StatusList');
 

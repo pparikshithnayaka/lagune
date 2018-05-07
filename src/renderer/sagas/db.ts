@@ -1,14 +1,14 @@
-import * as AuthClient from '@/auth';
-import { Action } from 'typescript-fsa';
-import { SagaIterator } from 'redux-saga';
-import { bindAsyncAction } from 'typescript-fsa-redux-saga';
-import { call, takeEvery } from 'redux-saga/effects';
 import {
   addVerifiedAccount,
   fetchVerifiedAccounts,
   fetchVerifiedAccountsProcess,
 } from '@/actions/verified_account';
+import * as AuthClient from '@/auth';
 import db from '@/db';
+import { SagaIterator } from 'redux-saga';
+import { call, takeEvery } from 'redux-saga/effects';
+import { Action } from 'typescript-fsa';
+import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 
 db.open();
 

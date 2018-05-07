@@ -1,8 +1,3 @@
-import { call, put, select, takeEvery } from 'redux-saga/effects';
-import { SagaIterator } from 'redux-saga';
-import { Action } from 'typescript-fsa';
-import { bindAsyncAction } from 'typescript-fsa-redux-saga';
-import { RootState } from '@/reducers';
 import {
   fetchAuthorizationUrl,
   fetchAuthorizationUrlProcess,
@@ -13,6 +8,11 @@ import {
   addVerifiedAccount,
 } from '@/actions/verified_account';
 import * as AuthClient from '@/auth';
+import { RootState } from '@/reducers';
+import { SagaIterator } from 'redux-saga';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
+import { Action } from 'typescript-fsa';
+import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 
 const fetchAuthorizationUrlWorker = bindAsyncAction(fetchAuthorizationUrlProcess)(
   function* (host): SagaIterator {

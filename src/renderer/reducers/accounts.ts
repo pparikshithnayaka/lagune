@@ -1,8 +1,8 @@
-import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import Mastodon from '@lagunehq/core';
 import {
   verifyCodeProcess,
 } from '@/actions/login';
+import Mastodon from '@lagunehq/core';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export interface AccountsState { [key: string]: Mastodon.Account; }
 

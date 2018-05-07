@@ -1,7 +1,7 @@
-import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import {
   fetchAuthorizationUrlProcess,
 } from '@/actions/login';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export interface LoginInitialState {
   /** Value of input element */

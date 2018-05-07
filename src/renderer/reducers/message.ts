@@ -1,8 +1,8 @@
-import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import {
-  showMessage,
   hideMessage,
+  showMessage,
 } from '@/actions/message';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export interface MessageState {
   /** Type of the message. this prop affects the color of message box */

@@ -1,12 +1,12 @@
 /* tslint:disable: no-console */
-import { app, BrowserWindow, shell, dialog, ipcMain as ipc } from 'electron';
-import * as path from 'path';
-import * as url from 'url';
-import updateElectronApp from 'update-electron-app';
+import { app, BrowserWindow, dialog, ipcMain as ipc, shell } from 'electron';
 import installExtension, {
-  REDUX_DEVTOOLS,
   REACT_DEVELOPER_TOOLS,
+  REDUX_DEVTOOLS,
 } from 'electron-devtools-installer';
+import * as path from 'path';
+import updateElectronApp from 'update-electron-app';
+import * as url from 'url';
 
 // Electron's auto updater
 // Updates application itself if new version released in GitHub

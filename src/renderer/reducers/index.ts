@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
+import activeAccount, { ActiveAccountState } from '@/reducers/active_account';
 // import accounts, { AccountsState } from '@/reducers/accounts';
 import login, { LoginInitialState } from '@/reducers/login';
 import message, { MessageState } from '@/reducers/message';
-import verified_accounts, { VerifiedAccountsState } from '@/reducers/verified_accounts';
 import settings, { SettingsInterface } from '@/reducers/settings';
-import activeAccount, { ActiveAccountState } from '@/reducers/active_account';
+import verified_accounts, { VerifiedAccountsState } from '@/reducers/verified_accounts';
+import { combineReducers } from 'redux';
 
 export interface RootState {
   // accounts: AccountsState;

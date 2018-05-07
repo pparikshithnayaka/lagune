@@ -1,10 +1,10 @@
-import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import {
   addVerifiedAccount,
-  removeVerifiedAccount,
   fetchVerifiedAccountsProcess,
+  removeVerifiedAccount,
 } from '@/actions/verified_account';
 import * as Lagune from '@@/typings/lagune';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export type VerifiedAccountsState = Lagune.VerifiedAccount[];
 

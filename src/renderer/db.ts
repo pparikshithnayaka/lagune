@@ -1,5 +1,5 @@
-import Dexie from 'dexie';
 import * as Lagune from '@@/typings/lagune';
+import Dexie from 'dexie';
 
 class LaguneDB extends Dexie {
   public verified_accounts!: Dexie.Table<Lagune.VerifiedAccount, number>;

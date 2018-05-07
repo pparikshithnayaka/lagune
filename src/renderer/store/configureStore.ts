@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { Action } from 'typescript-fsa';
+import errorMiddleware from '@/middlewares/error';
 import { reducer, RootState } from '@/reducers';
 import rootSaga from '@/sagas';
-import errorMiddleware from '@/middlewares/error';
+import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { Action } from 'typescript-fsa';
 
 export function configureStore () {
   const composeEnhancers = (

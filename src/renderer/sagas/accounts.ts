@@ -1,12 +1,12 @@
-import { call, takeEvery } from 'redux-saga/effects';
-import { bindAsyncAction } from 'typescript-fsa-redux-saga';
-import { Action } from 'typescript-fsa';
-import client from '@/client';
-import { SagaIterator } from 'redux-saga';
 import {
   fetchAccount,
   fetchAccountProcess,
 } from '@/actions/accounts';
+import client from '@/client';
+import { SagaIterator } from 'redux-saga';
+import { call, takeEvery } from 'redux-saga/effects';
+import { Action } from 'typescript-fsa';
+import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 
 const fetchAccountWorker = bindAsyncAction(fetchAccountProcess)(
   function* (accountId): SagaIterator {

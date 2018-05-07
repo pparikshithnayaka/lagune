@@ -1,5 +1,5 @@
-import Mastodon from '@lagunehq/core';
 import config from '@/config';
+import Mastodon from '@lagunehq/core';
 
 export interface ServerError {
   error: string;

@@ -1,5 +1,5 @@
-import actionCreatorFactory from 'typescript-fsa';
 import * as Lagune from '@@/typings/lagune';
+import actionCreatorFactory from 'typescript-fsa';
 const actionCreator = actionCreatorFactory('VerifiedAccount');
 
 export const fetchVerifiedAccounts = actionCreator<{}>('FETCH_VERIFIED_ACCOUNTS');

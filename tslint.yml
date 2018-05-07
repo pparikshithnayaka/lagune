@@ -12,7 +12,7 @@ rules:
   no-duplicate-imports: true
   space-before-function-paren: true
   member-ordering: false
-  ordered-imports: false
+  ordered-imports: true
   object-literal-sort-keys: false
   max-line-length: false
   variable-name: false

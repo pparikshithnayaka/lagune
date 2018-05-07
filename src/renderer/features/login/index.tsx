@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { Route } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import { AnimatedSwitch } from 'react-router-transition';
 import Column from '@/components/column';
 import TitleBar from '@/components/title_bar';
-import UsernameFromContainer from '@/features/login/containers/username_form_container';
 import CodeFormContainer from '@/features/login/containers/code_form_container';
+import UsernameFromContainer from '@/features/login/containers/username_form_container';
+import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
+import { Route } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 
 export default class Login extends React.PureComponent {
 

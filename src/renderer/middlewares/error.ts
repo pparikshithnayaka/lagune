@@ -1,5 +1,5 @@
-import { Middleware } from 'redux';
 import { ipcRenderer as ipc } from 'electron';
+import { Middleware } from 'redux';
 
 export default function errorsMiddleware (): Middleware {
   return () => (next) => (action) => {

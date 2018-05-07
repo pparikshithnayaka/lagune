@@ -1,5 +1,5 @@
-import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { changeActiveAccount } from '@/actions/active_account';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 export type ActiveAccountState = number;
 

@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { RootState } from '@/reducers';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import Mastodon from '@lagunehq/core';
 import Column from '@/components/column';
 import TitleBar from '@/components/title_bar';
+import { RootState } from '@/reducers';
+import Mastodon from '@lagunehq/core';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 export interface Props extends RouteComponentProps<any> {
   account: Mastodon.Account;

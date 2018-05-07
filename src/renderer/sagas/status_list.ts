@@ -1,14 +1,14 @@
-import { call } from 'redux-saga/effects';
-import { SagaIterator } from 'redux-saga';
-import { bindAsyncAction } from 'typescript-fsa-redux-saga';
-import { client } from '@/client';
 import {
-  fetchHomeTimeline,
   fetchCommunityTimeline,
+  fetchHomeTimeline,
+  fetchListTimeline,
   fetchPublicTimeline,
   fetchTagTimeline,
-  fetchListTimeline,
 } from '@/actions/status_list';
+import { client } from '@/client';
+import { SagaIterator } from 'redux-saga';
+import { call } from 'redux-saga/effects';
+import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 
 const fetchHomeTimelineWorker = bindAsyncAction(fetchHomeTimeline)(
   function* (): SagaIterator {
