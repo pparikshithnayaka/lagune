@@ -21,7 +21,7 @@ let mainWindow: Electron.BrowserWindow;
 function createWindow () {
   mainWindow = new BrowserWindow({
     show: false,
-    height: 600,
+    height: 700,
     width: 380,
     minWidth : 380,
     frame: process.platform !== 'darwin',
@@ -55,8 +55,8 @@ function createWindow () {
     // Installing React Developer Tools
     // and Redux DevTools
     if ( process.env.NODE_ENV === 'development' ) {
-      installExtension(REDUX_DEVTOOLS.id);
-      installExtension(REACT_DEVELOPER_TOOLS.id);
+      installExtension(REDUX_DEVTOOLS);
+      installExtension(REACT_DEVELOPER_TOOLS);
     }
  });
 
