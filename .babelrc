@@ -1,11 +1,10 @@
 {
+  "passPerPreset": true,
   "presets": [
     [
       "@babel/preset-env",
       {
-        "targets": {
-          "electron": "1.8"
-        },
+        "targets": { "electron": "2.0" },
         "useBuiltIns": "usage"
       }
     ],
