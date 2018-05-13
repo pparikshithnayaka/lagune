@@ -1,21 +1,29 @@
 {
   "passPerPreset": true,
   "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "targets": { "electron": "2.0" },
-        "useBuiltIns": "usage"
-      }
-    ],
-    [
-      "@babel/preset-stage-2",
-      {
-        "decoratorsLegacy": true
-      }
-    ],
-    "@babel/preset-react",
-    "@babel/preset-typescript"
+    {
+      "presets": [
+        "@babel/preset-typescript"
+      ]
+    },
+    {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": { "electron": "2.0" },
+            "useBuiltIns": "usage"
+          }
+        ],
+        [
+          "@babel/preset-stage-2",
+          {
+            "decoratorsLegacy": true
+          }
+        ],
+        "@babel/preset-react"
+      ]
+    }
   ],
 
   "plugins": [
