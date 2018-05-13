@@ -1,5 +1,5 @@
 import {
-  addVerifiedAccount,
+  addVerifiedAccountProcess,
   fetchVerifiedAccountsProcess,
   removeVerifiedAccount,
 } from '@/actions/verified_account';
@@ -10,25 +10,19 @@ export type VerifiedAccountsState = Lagune.VerifiedAccount[];
 
 const initialState: VerifiedAccountsState = [];
 
-function appendToList (state: VerifiedAccountsState, payload: Lagune.VerifiedAccount[]) {
-  state.push.apply(payload);
+function appendToList (state: VerifiedAccountsState, result: Lagune.VerifiedAccount[]) {
+  state = state.concat(result);
 
   return state;
 }
 
-function appendOneToList (state: VerifiedAccountsState, payload: Lagune.VerifiedAccount) {
-  state.push(payload);
-
-  return state;
-}
-
-function removeFromList (state: VerifiedAccountsState, payload: number) {
+function removeOneFromList (state: VerifiedAccountsState, payload: number) {
   delete state[payload];
 
   return state;
 }
 
 export default reducerWithInitialState(initialState)
-  .case(fetchVerifiedAccountsProcess.done, (state, payload) => appendToList(state, payload.result))
-  .case(addVerifiedAccount,    (state, payload) => appendOneToList(state, payload))
-  .case(removeVerifiedAccount, (state, payload) => removeFromList(state, payload));
+  .case(fetchVerifiedAccountsProcess.done, (state, { result }) => appendToList(state, result))
+  .case(addVerifiedAccountProcess.done,    (state, { result }) => appendToList(state, result))
+  .case(removeVerifiedAccount, (state, payload) => removeOneFromList(state, payload));

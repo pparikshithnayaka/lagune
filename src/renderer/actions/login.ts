@@ -1,3 +1,4 @@
+import * as Lagune from '@@/typings/lagune';
 import Mastodon from '@lagunehq/core';
 import actionCreatorFactory from 'typescript-fsa';
 const actionCreator = actionCreatorFactory('Login');
@@ -14,6 +15,6 @@ export const verifyCode = actionCreator<string>('VERIFY_CODE');
 
 export const verifyCodeProcess = actionCreator.async<
   string,
-  any,
+  Lagune.VerifiedAccount,
   Mastodon.Error
 >('VERIFY_CODE_PROCESS');

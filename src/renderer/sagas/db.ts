@@ -1,10 +1,11 @@
 import {
   addVerifiedAccount,
+  addVerifiedAccountProcess,
   fetchVerifiedAccounts,
   fetchVerifiedAccountsProcess,
 } from '@/actions/verified_account';
-import * as AuthClient from '@/auth';
-import db from '@/db';
+import db, { VerifiedAccountsTable } from '@/db';
+import * as Lagune from '@@/typings/lagune';
 import { SagaIterator } from 'redux-saga';
 import { call, takeEvery } from 'redux-saga/effects';
 import { Action } from 'typescript-fsa';
@@ -12,22 +13,25 @@ import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 
 db.open();
 
-function* appendToList (payload: any) {
-  yield db.table('verified_accounts').add(payload);
-}
+const addVerifiedAccountWorker = bindAsyncAction(addVerifiedAccountProcess)(
+  function* (account: Lagune.VerifiedAccount): SagaIterator {
+    // Add new verified account to table
+    yield call(db.verified_accounts.add, { ...account });
+
+    // Fetching latest data
+    const result: VerifiedAccountsTable[] = yield call(() => db.verified_accounts.toArray());
+    return result;
+  },
+);
 
 const fetchVerifiedAccountsWorker = bindAsyncAction(fetchVerifiedAccountsProcess)(
   function* ({}): SagaIterator {
-    if ( db.verified_accounts !== undefined ) {
-      const result = yield call(db.table('verified_accounts').toArray);
-      return result;
-    }
-
-    return [];
+    const result: VerifiedAccountsTable[] = yield call(() => db.verified_accounts.toArray());
+    return result;
   },
 );
 
 export default function* dbSaga () {
-  yield takeEvery<Action<AuthClient.Credentials>>(addVerifiedAccount, ({ payload }) => appendToList(payload));
-  yield takeEvery<Action<{}>>(fetchVerifiedAccounts, () => fetchVerifiedAccountsWorker({}));
+  yield takeEvery<Action<Lagune.VerifiedAccount>>(addVerifiedAccount, ({ payload }) => addVerifiedAccountWorker(payload));
+  yield takeEvery<Action<{}>>(fetchVerifiedAccounts, () => fetchVerifiedAccountsWorker({}) );
 }

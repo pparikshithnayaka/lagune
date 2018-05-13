@@ -8,6 +8,7 @@ import {
   addVerifiedAccount,
 } from '@/actions/verified_account';
 import * as AuthClient from '@/auth';
+import client from '@/client';
 import { RootState } from '@/reducers';
 import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeEvery } from 'redux-saga/effects';
