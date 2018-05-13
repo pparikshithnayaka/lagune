@@ -1,4 +1,4 @@
 import actionCreatorFactory from 'typescript-fsa';
 const actionCreator = actionCreatorFactory('ActiveAccount');
 
-export const changeActiveAccount = actionCreator<number>('CHANGE_ACTIVE_ACCOUNT');
+export const changeActiveAccount = actionCreator<number>('CHANGE');
