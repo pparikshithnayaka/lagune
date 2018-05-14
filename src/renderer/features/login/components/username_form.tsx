@@ -57,7 +57,7 @@ export default class UsernameForm extends React.PureComponent<Props, State> {
           <input
             className='login-from__input'
             type='text'
-            pattern='^@\w{1,30}@\w+\.\w+$'
+            pattern='^@\w{1,30}@[\w\.]+\.\w+$'
             placeholder='@neet@mastodon.social'
             onChange={this.handleChange}
           />
