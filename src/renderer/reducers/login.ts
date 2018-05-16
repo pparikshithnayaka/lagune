@@ -3,7 +3,7 @@ import {
 } from '@/actions/login';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-export interface LoginInitialState {
+export interface LoginState {
   /** Value of input element */
   host: string;
 
@@ -14,7 +14,7 @@ export interface LoginInitialState {
   is_submitted: boolean;
 }
 
-const intiialState: LoginInitialState = {
+const intiialState: LoginState = {
   host: '',
   is_submitting: false,
   is_submitted: false,
