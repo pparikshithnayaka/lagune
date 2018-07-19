@@ -13,6 +13,7 @@
         "./dist/**/*.js",
         "./dist/**/*.css",
       ],
+      "preLaunchTask": "watch:dev",
       "runtimeArgs": [
         "--remote-debugging-port=9223",
         "."
