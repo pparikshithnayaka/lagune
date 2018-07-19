@@ -20,7 +20,7 @@
     "watch": "yarn run build:main && webpack-dev-server --mode=${NODE_ENV} --config=webpack.renderer.js"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-beta.54",
