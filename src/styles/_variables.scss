@@ -1,8 +1,8 @@
 // Common colors
-$black: #000000 !default;
-$white: #ffffff !default;
-$red:   #FF5722 !default;
-$blue:  #2196F3 !default;
+$black: #000 !default;
+$white: #fff !default;
+$red:   #ff5722 !default;
+$blue:  #2196f3 !default;
 $green: #009688 !default;
 
 // Primary color of the UI
@@ -13,7 +13,7 @@ $secondary-color:  #d9e1e8 !default;
 $highlight-color: #2b90d9 !default;
 
 // Text colors
-$primary-text-color: #ffffff !default;
+$primary-text-color: #fff !default;
 $darker-text-color: $primary-color !default;
 $dark-text-color: $base-lighter-color !default;
 $secondary-text-color: $secondary-color !default;
@@ -24,7 +24,7 @@ $lighter-text-color: $base-lighter-color !default;
 $light-text-color: $primary-color !default;
 
 // Shadow of some modal/button
-$shadow-color: #000000 !default;
+$shadow-color: #000 !default;
 
 // CSS transition delay
 $transition-fast: 0.1s !default;
