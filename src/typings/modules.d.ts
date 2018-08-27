@@ -9,23 +9,6 @@ declare module '*.svg';
 declare module '*.woff';
 declare module '*.woff2';
 
-
-declare namespace UpdateElectronApp {
-  interface UpdaterOptions {
-    repo?: string;
-    host?: string;
-    updateInterval?: string;
-    logger?: (message: string) => void;
-  }
-
-  declare function updater (opts: UpdaterOptions)
-}
-
-declare module 'update-electron-app' {
-  export = UpdateElectronApp.updater;
-}
-
-
 declare namespace ReactRouterTransition {
 
   namespace RouteTransition {
