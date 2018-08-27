@@ -50,7 +50,7 @@
     "@types/react-tabs": "^1.0.5",
     "@types/uuid": "^3.4.3",
     "@types/webpack-env": "^1.13.6",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "8.0.0-beta.6",
     "babel-plugin-react-intl": "^2.4.0",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^0.1.19",
