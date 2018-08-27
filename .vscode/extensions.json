@@ -4,6 +4,7 @@
     "robinbentley.sass-indented",
     "eg2.tslint",
     "Orta.vscode-jest",
-    "msjsdiag.debugger-for-chrome"
+    "msjsdiag.debugger-for-chrome",
+    "shinnn.stylelint"
   ]
 }
