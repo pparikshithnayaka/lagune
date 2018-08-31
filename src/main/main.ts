@@ -5,12 +5,12 @@ import installExtension, {
   REDUX_DEVTOOLS,
 } from 'electron-devtools-installer';
 import * as path from 'path';
-import updateElectronApp from 'update-electron-app';
+import { updater } from 'update-electron-app';
 import * as url from 'url';
 
 // Electron's auto updater
 // Updates application itself if new version released in GitHub
-updateElectronApp({
+updater({
   repo: 'lagunehq/lagune',
   updateInterval: '1 hour',
 });
