@@ -1,19 +1,17 @@
 import {
   fetchAccountProcess,
 } from '@/actions/accounts';
-import Mastodon from '@lagunehq/core';
+import { Account, Credentials } from '@lagunehq/core';
+import { Map as ImmutableMap } from 'immutable';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-function normalizeAccount (state: AccountsState, account: Mastodon.Account|Mastodon.Credentials) {
-  return {
-    ...state,
-    [account.id]: account,
-  };
+function normalizeAccount (state: AccountsState, account: Account|Credentials) {
+  return state.set(account.id, account);
 }
 
-export interface AccountsState { [key: string]: Mastodon.Account; }
+export type AccountsState = ImmutableMap<string, Account>;
 
-const initialState: AccountsState = {};
+const initialState: AccountsState = ImmutableMap();
 
 export default reducerWithInitialState<AccountsState>(initialState)
   .case(fetchAccountProcess.done, (state, { result }) => normalizeAccount(state, result));

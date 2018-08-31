@@ -3,26 +3,23 @@ import {
   fetchVerifiedAccountsProcess,
   removeVerifiedAccount,
 } from '@/actions/verified_account';
-import * as Lagune from '@@/typings/lagune';
+import { VerifiedAccount } from '@@/typings/lagune';
+import { List as ImmutableList } from 'immutable';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-export type VerifiedAccountsState = Lagune.VerifiedAccount[];
+export type VerifiedAccountsState = ImmutableList<VerifiedAccount>;
 
-const initialState: VerifiedAccountsState = [];
-
-function appendToList (state: VerifiedAccountsState, result: Lagune.VerifiedAccount[]) {
-  state = state.concat(result);
-
-  return state;
+function appendToList (state: VerifiedAccountsState, result: VerifiedAccount[]): VerifiedAccountsState {
+  return state.merge(result);
 }
 
-function removeOneFromList (state: VerifiedAccountsState, payload: number) {
-  delete state[payload];
-
-  return state;
+function removeOneFromList (state: VerifiedAccountsState, index: number) {
+  return state.delete(index);
 }
+
+const initialState: VerifiedAccountsState = ImmutableList();
 
 export default reducerWithInitialState(initialState)
   .case(fetchVerifiedAccountsProcess.done, (state, { result }) => appendToList(state, result))
   .case(addVerifiedAccountProcess.done,    (state, { result }) => appendToList(state, result))
-  .case(removeVerifiedAccount, (state, payload) => removeOneFromList(state, payload));
+  .case(removeVerifiedAccount,             (state, payload) => removeOneFromList(state, payload));
