@@ -2,29 +2,27 @@ import {
   changeActiveAccount,
   changeActiveAccountProcess,
 } from '@/actions/active_account';
-import { SagaIterator } from 'redux-saga';
 import client from '@/client';
-import RootState from '@/reducers';
-import { call, select, takeEvery } from 'redux-saga/effects';
-import { Action } from 'typescript-fsa';
-import { bindAsyncAction } from 'typescript-fsa-redux-saga';
-import * as Lagune from '@@/typings/lagune';
+import { RootState } from '@/reducers';
+import { VerifiedAccount } from '@@/typings/lagune';
+import { SagaIterator } from 'redux-saga';
+import { put, select, takeEvery } from 'redux-saga/effects';
 
-const changeActiveAccountWorker = bindAsyncAction(changeActiveAccountProcess)(
-  function* (index: number): SagaIterator {
+function* changeActiveAccountWorker (index: number): SagaIterator {
+  yield put(changeActiveAccountProcess.started(index));
 
-    const activeAccount: Lagune.VerifiedAccount = yield select((state: RootState) => state.verified_account[index]);
-
+  try {
+    const activeAccount: VerifiedAccount = yield select((state: RootState) => state.verified_accounts.get(index));
     client.setUrl(activeAccount.url);
     client.setToken(activeAccount.access_token);
-    client.setUrlVersion(activeAccount.url_version);
     client.setStreamingUrl(activeAccount.streaming_url);
-
-    return index;
+    yield put(changeActiveAccountProcess.done({ params: index, result: index }));
+  } catch (error) {
+    yield put(changeActiveAccountProcess.failed({ params: index, error }));
+    throw error;
   }
-)
-
+}
 
 export default function* activeAccountSaga () {
-  yield takeEvery<Action<number>>(changeActiveAccount, ({ payload }) => changeActiveAccountWorker(payload));
+  yield takeEvery(changeActiveAccount, ({ payload }) => changeActiveAccountWorker(payload));
 }

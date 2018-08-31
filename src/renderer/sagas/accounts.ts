@@ -3,18 +3,21 @@ import {
   fetchAccountProcess,
 } from '@/actions/accounts';
 import client from '@/client';
+import { Account } from '@lagunehq/core';
 import { SagaIterator } from 'redux-saga';
-import { call, takeEvery } from 'redux-saga/effects';
-import { Action } from 'typescript-fsa';
-import { bindAsyncAction } from 'typescript-fsa-redux-saga';
+import { call, put, takeEvery } from 'redux-saga/effects';
 
-const fetchAccountWorker = bindAsyncAction(fetchAccountProcess)(
-  function* (accountId): SagaIterator {
-    const result = yield call(client.fetchAccount, accountId);
-    return result;
-  },
-);
+function* fetchAccountWorker (id: string): SagaIterator {
+  yield put(fetchAccountProcess.started(id));
+
+  try {
+    const account: Account = yield call(client.fetchAccount, id);
+    yield put(fetchAccountProcess.done({ params: id, result: account}));
+  } catch (error) {
+    yield put(fetchAccountProcess.failed(error));
+  }
+}
 
 export default function* accountsSaga () {
-  yield takeEvery<Action<string>>(fetchAccount, ({ payload }) => fetchAccountWorker(payload));
+  yield takeEvery(fetchAccount, ({ payload }) => fetchAccountWorker(payload));
 }

@@ -8,26 +8,29 @@ import {
   addVerifiedAccount,
 } from '@/actions/verified_account';
 import * as AuthClient from '@/auth';
-import client from '@/client';
 import { RootState } from '@/reducers';
 import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeEvery } from 'redux-saga/effects';
-import { Action } from 'typescript-fsa';
-import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 
-const fetchAuthorizationUrlWorker = bindAsyncAction(fetchAuthorizationUrlProcess)(
-  function* (host): SagaIterator {
+function* fetchAuthorizationUrlWorker (host: string): SagaIterator {
+  yield put(fetchAuthorizationUrlProcess.started(host));
+
+  try {
     const result: AuthClient.Url = yield call(AuthClient.fetchAuthorizationUrl, host);
 
     // Open authorization page in the default browser
     window.open(result.url);
 
-    return result;
-  },
-);
+    yield put(fetchAuthorizationUrlProcess.done({ params: host, result }));
+  } catch (error) {
+    yield put(fetchAuthorizationUrlProcess.failed(error));
+  }
+}
 
-const verifyCodeWorker = bindAsyncAction(verifyCodeProcess)(
-  function* (code): SagaIterator {
+function* verifyCodeWorker (code: string): SagaIterator {
+  yield put(verifyCodeProcess.started(code));
+
+  try {
     const host: string = yield select((state: RootState) => state.login.host);
     const result: AuthClient.Credentials = yield call(AuthClient.verifyCode, host, code);
 
@@ -39,10 +42,14 @@ const verifyCodeWorker = bindAsyncAction(verifyCodeProcess)(
       url_version:   '/api/v1',
       streaming_url: result.instance.urls.streaming_api,
     }));
-  },
-);
+
+    yield put(verifyCodeProcess.done({ params: code, result }));
+  } catch (error) {
+    yield put(verifyCodeProcess.failed(error));
+  }
+}
 
 export default function* loginSaga () {
-  yield takeEvery<Action<string>>(fetchAuthorizationUrl, ({ payload }) => fetchAuthorizationUrlWorker(payload));
-  yield takeEvery<Action<string>>(verifyCode,            ({ payload }) => verifyCodeWorker(payload));
+  yield takeEvery(fetchAuthorizationUrl, ({ payload }) => fetchAuthorizationUrlWorker(payload));
+  yield takeEvery(verifyCode,            ({ payload }) => verifyCodeWorker(payload));
 }

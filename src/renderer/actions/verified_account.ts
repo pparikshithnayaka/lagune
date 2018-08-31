@@ -5,7 +5,7 @@ const actionCreator = actionCreatorFactory('VerifiedAccount');
 export const fetchVerifiedAccounts = actionCreator<{}>('FETCH');
 
 export const fetchVerifiedAccountsProcess = actionCreator.async<
-  {},
+  void,
   Lagune.VerifiedAccount[]
 >('FETCH_PROCESS');
 

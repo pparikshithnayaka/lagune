@@ -1,5 +1,5 @@
 import config from '@/config';
-import Mastodon from '@lagunehq/core';
+import { Credentials, Instance } from '@lagunehq/core';
 
 export interface ServerError {
   error: string;
@@ -11,8 +11,8 @@ export interface Url {
 
 export interface Credentials {
   access_token: string;
-  account: Mastodon.Credentials;
-  instance: Mastodon.Instance;
+  account: Credentials;
+  instance: Instance;
 }
 
 export const fetchAuthorizationUrl = async (host: string) => {

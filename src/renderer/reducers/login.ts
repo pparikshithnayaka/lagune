@@ -1,8 +1,9 @@
+import { RootAction } from '@/actions';
 import {
   fetchAuthorizationUrlProcess,
 } from '@/actions/login';
 import { Record } from 'immutable';
-import { reducerWithInitialState } from 'typescript-fsa-reducers';
+import { isType } from 'typescript-fsa';
 
 interface RecordProps {
   /** Value of input element */
@@ -42,10 +43,21 @@ function fulfilAuthorizationProcess (state: LoginState): LoginState {
 
 const initialState = new LoginState();
 
-export default reducerWithInitialState(initialState)
-  .case(fetchAuthorizationUrlProcess.started, (state, payload) => startAuthorizationProcess(state, payload))
-  .case(fetchAuthorizationUrlProcess.done,    (state) => finishAuthorizationProcess(state))
-  .cases([
-    fetchAuthorizationUrlProcess.done,
-    fetchAuthorizationUrlProcess.failed,
-  ], (state) => fulfilAuthorizationProcess(state));
+export default function login (state = initialState, action: RootAction) {
+  if (isType(action, fetchAuthorizationUrlProcess.started)) {
+    return startAuthorizationProcess(state, action.payload);
+  }
+
+  if (isType(action, fetchAuthorizationUrlProcess.done)) {
+    return finishAuthorizationProcess(state);
+  }
+
+  if (
+    isType(action, fetchAuthorizationUrlProcess.done) ||
+    isType(action, fetchAuthorizationUrlProcess.failed)
+  ) {
+    return fulfilAuthorizationProcess(state);
+  }
+
+  return state;
+}

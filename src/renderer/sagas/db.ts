@@ -5,33 +5,38 @@ import {
   fetchVerifiedAccountsProcess,
 } from '@/actions/verified_account';
 import db, { VerifiedAccountsTable } from '@/db';
-import * as Lagune from '@@/typings/lagune';
+import { VerifiedAccount } from '@@/typings/lagune';
 import { SagaIterator } from 'redux-saga';
-import { call, takeEvery } from 'redux-saga/effects';
-import { Action } from 'typescript-fsa';
-import { bindAsyncAction } from 'typescript-fsa-redux-saga';
+import { call, put, takeEvery } from 'redux-saga/effects';
 
 db.open();
 
-const addVerifiedAccountWorker = bindAsyncAction(addVerifiedAccountProcess)(
-  function* (account: Lagune.VerifiedAccount): SagaIterator {
+function* addVerifiedAccountWorker (account: VerifiedAccount): SagaIterator {
+  yield put(addVerifiedAccountProcess.started(account));
+
+  try {
     // Add new verified account to table
-    yield call(db.verified_accounts.add, { ...account });
-
+    yield call(db.verified_accounts.add, account);
     // Fetching latest data
-    const result: VerifiedAccountsTable[] = yield call(() => db.verified_accounts.toArray());
-    return result;
-  },
-);
+    const result: VerifiedAccount[] = yield call(db.verified_accounts.toArray);
+    yield put(addVerifiedAccountProcess.done({ params: account, result }));
+  } catch (error) {
+    yield put(addVerifiedAccountProcess.failed(error));
+  }
+}
 
-const fetchVerifiedAccountsWorker = bindAsyncAction(fetchVerifiedAccountsProcess)(
-  function* ({}): SagaIterator {
+function* fetchVerifiedAccountsWorker (): SagaIterator {
+  yield put(fetchVerifiedAccountsProcess.started());
+
+  try {
     const result: VerifiedAccountsTable[] = yield call(() => db.verified_accounts.toArray());
-    return result;
-  },
-);
+    yield put(fetchVerifiedAccountsProcess.done({ result }));
+  } catch (error) {
+    yield put(fetchVerifiedAccountsProcess.failed(error));
+  }
+}
 
 export default function* dbSaga () {
-  yield takeEvery<Action<Lagune.VerifiedAccount>>(addVerifiedAccount, ({ payload }) => addVerifiedAccountWorker(payload));
-  yield takeEvery<Action<{}>>(fetchVerifiedAccounts, () => fetchVerifiedAccountsWorker({}) );
+  yield takeEvery(addVerifiedAccount, ({ payload }) => addVerifiedAccountWorker(payload));
+  yield takeEvery(fetchVerifiedAccounts, () => fetchVerifiedAccountsWorker());
 }

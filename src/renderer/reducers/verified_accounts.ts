@@ -1,3 +1,4 @@
+import { RootAction } from '@/actions';
 import {
   addVerifiedAccountProcess,
   fetchVerifiedAccountsProcess,
@@ -5,7 +6,7 @@ import {
 } from '@/actions/verified_account';
 import { VerifiedAccount } from '@@/typings/lagune';
 import { List as ImmutableList } from 'immutable';
-import { reducerWithInitialState } from 'typescript-fsa-reducers';
+import { isType } from 'typescript-fsa';
 
 export type VerifiedAccountsState = ImmutableList<VerifiedAccount>;
 
@@ -19,7 +20,17 @@ function removeOneFromList (state: VerifiedAccountsState, index: number) {
 
 const initialState: VerifiedAccountsState = ImmutableList();
 
-export default reducerWithInitialState(initialState)
-  .case(fetchVerifiedAccountsProcess.done, (state, { result }) => appendToList(state, result))
-  .case(addVerifiedAccountProcess.done,    (state, { result }) => appendToList(state, result))
-  .case(removeVerifiedAccount,             (state, payload) => removeOneFromList(state, payload));
+export default function verifiedAccounts (state = initialState, action: RootAction) {
+  if (
+    isType(action, fetchVerifiedAccountsProcess.done) ||
+    isType(action, addVerifiedAccountProcess.done)
+  ) {
+    return appendToList(state, action.payload.result);
+  }
+
+  if (isType(action, removeVerifiedAccount)) {
+    return removeOneFromList(state, action.payload);
+  }
+
+  return state;
+}
