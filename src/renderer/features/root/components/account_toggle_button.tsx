@@ -1,10 +1,10 @@
 import { fetchAccount } from '@/actions/accounts';
 import Button from '@/components/button';
-import Mastodon from '@lagunehq/core';
+import { Account } from '@lagunehq/core';
 import * as React from 'react';
 
 export interface Props {
-  account?: Mastodon.Account;
+  account?: Account;
   accountId: string;
   fetchAccount: typeof fetchAccount;
 }

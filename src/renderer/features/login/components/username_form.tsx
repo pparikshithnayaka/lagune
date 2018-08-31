@@ -4,7 +4,7 @@ import * as React from 'react';
 import { FormattedMessage, InjectedIntlProps } from 'react-intl';
 import { RouteComponentProps } from 'react-router-dom';
 
-export interface Props extends RouteComponentProps<any>, InjectedIntlProps {
+export interface Props extends InjectedIntlProps, RouteComponentProps<void> {
   isSubmitting: boolean;
   isSubmitted: boolean;
   onSubmit: typeof fetchAuthorizationUrl;

@@ -1,12 +1,12 @@
+import Root from '@/features/root';
+import { configureStore } from '@/store/configureStore';
 import * as React from 'react';
-import { Provider } from 'react-redux';
-import { Switch, Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import * as en from 'react-intl/locale-data/en';
 import * as ja from 'react-intl/locale-data/ja';
-import { configureStore } from '@/store/configureStore';
-import Root from '@/features/root';
+import { Provider } from 'react-redux';
+import { Route, Switch } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 export const store = configureStore();
 

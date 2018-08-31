@@ -4,7 +4,7 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { RouteComponentProps } from 'react-router-dom';
 
-export interface Props extends RouteComponentProps<any> {
+export interface Props extends RouteComponentProps<void> {
   onSubmit: typeof verifyCode;
 }
 
