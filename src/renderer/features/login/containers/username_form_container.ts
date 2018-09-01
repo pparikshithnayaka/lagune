@@ -1,5 +1,5 @@
 import { fetchAuthorizationUrl } from '@/actions/login';
-import UsernameForm, { Props } from '@/features/login/components/username_form';
+import UsernameForm from '@/features/login/components/username_form';
 import { RootState } from '@/reducers';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
@@ -13,4 +13,4 @@ const mapStateToProps = (state: RootState) => ({
 export default connect(
   mapStateToProps,
   { fetchAuthorizationUrl },
-)(withRouter<Props>(injectIntl<Props>(UsernameForm)));
+)(withRouter(injectIntl(UsernameForm)));
