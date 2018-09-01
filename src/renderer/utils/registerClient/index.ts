@@ -1,5 +1,4 @@
 import config from '@/renderer/config';
-import { Credentials } from '@lagunehq/core';
 import querystring from 'querystring';
 
 export * from '@/renderer/utils/registerClient/entities';
@@ -8,7 +7,7 @@ export const fetchAuthorizationUrl = async (host: string) => {
   const response = await fetch(`${config.server_url}/oauth/url?${querystring.stringify({ host })}`);
   const result   = await response.json();
 
-  if (response.ok) {
+  if (response.ok && result.url) {
     return result.url as string;
   }
 
@@ -24,8 +23,8 @@ export const verifyCode = async (host: string, code: string) => {
 
   const result = await response.json();
 
-  if (response.ok) {
-    return result as Credentials;
+  if (response.ok && result.access_token) {
+    return result.access_token as string;
   }
 
   throw new Error(result.error);

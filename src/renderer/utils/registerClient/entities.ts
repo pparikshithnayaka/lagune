@@ -1,11 +1,3 @@
-import { Credentials, Instance } from '@lagunehq/core';
-
-export interface Credentials {
-  access_token: string;
-  account: Credentials;
-  instance: Instance;
-}
-
 export interface VerifiedAccount {
   /** User id of authorized user */
   me: string;
