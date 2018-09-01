@@ -1,13 +1,15 @@
 import config from '@/renderer/config';
 import { Credentials } from '@lagunehq/core';
+import querystring from 'querystring';
 
+export * from '@/renderer/utils/registerClient/entities';
 
 export const fetchAuthorizationUrl = async (host: string) => {
-  const response = await fetch(`${config.server_url}/oauth/url?host=${host}`);
+  const response = await fetch(`${config.server_url}/oauth/url?${querystring.stringify({ host })}`);
   const result   = await response.json();
 
   if (response.ok) {
-    return result as string;
+    return result.url as string;
   }
 
   throw new Error(result.error);

@@ -1,12 +1,4 @@
-import { Instance } from '@lagunehq/core';
-
-export interface ServerError {
-  error: string;
-}
-
-export interface Url {
-  url: string;
-}
+import { Credentials, Instance } from '@lagunehq/core';
 
 export interface Credentials {
   access_token: string;

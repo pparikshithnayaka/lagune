@@ -1,8 +1,8 @@
-import * as Lagune from '@@/renderer/typings/lagune';
+import { VerifiedAccount } from '@/renderer/utils/registerClient';
 import Dexie from 'dexie';
 
 export class Laugne extends Dexie {
-  public verified_accounts!: Dexie.Table<VerifiedAccountsTable, number>;
+  public verified_accounts!: Dexie.Table<VerifiedAccountTable, number>;
 
   constructor () {
     super('lagune');
@@ -10,12 +10,12 @@ export class Laugne extends Dexie {
     const db = this;
 
     db.version(1).stores({
-        verified_accounts: '++id, me, access_token, url, url_version, streaming_url',
+      verified_accounts: '++id, me, access_token, url, url_version, streaming_url',
     });
   }
 }
 
-export interface VerifiedAccountsTable extends Lagune.VerifiedAccount {
+export interface VerifiedAccountTable extends VerifiedAccount {
   id?: number;
 }
 

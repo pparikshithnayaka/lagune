@@ -7,8 +7,8 @@ import {
 import {
   addVerifiedAccount,
 } from '@/renderer/actions/verified_account';
-import * as AuthClient from '@/renderer/auth';
 import { RootState } from '@/renderer/reducers';
+import * as registerClient from '@/renderer/utils/registerClient';
 import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 
@@ -16,10 +16,10 @@ function* fetchAuthorizationUrlWorker (host: string): SagaIterator {
   yield put(fetchAuthorizationUrlProcess.started(host));
 
   try {
-    const result: AuthClient.Url = yield call(AuthClient.fetchAuthorizationUrl, host);
+    const result: string = yield call(registerClient.fetchAuthorizationUrl, host);
 
     // Open authorization page in the default browser
-    window.open(result.url);
+    window.open(result);
 
     yield put(fetchAuthorizationUrlProcess.done({ params: host, result }));
   } catch (error) {
@@ -32,7 +32,7 @@ function* verifyCodeWorker (code: string): SagaIterator {
 
   try {
     const host: string = yield select((state: RootState) => state.login.host);
-    const result: AuthClient.Credentials = yield call(AuthClient.verifyCode, host, code);
+    const result: registerClient.Credentials = yield call(registerClient.verifyCode, host, code);
 
     // call addVerifiedAccount to save to the DB
     yield put(addVerifiedAccount({

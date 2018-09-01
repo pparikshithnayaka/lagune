@@ -1,6 +1,5 @@
 export default {
-
-  /** URL of the authorization server */
+  /** URL of the registration server */
   server_url:     process.env.SERVER_URL || '',
 
   /** Type of the update channel */
