@@ -10,7 +10,7 @@ export const fetchAuthorizationUrl = async (host: string) => {
     return result as string;
   }
 
-  throw new Error(result);
+  throw new Error(result.error);
 };
 
 export const verifyCode = async (host: string, code: string) => {
@@ -19,11 +19,12 @@ export const verifyCode = async (host: string, code: string) => {
     body: JSON.stringify({ host, code }),
     headers: { 'Content-Type': 'application/json' },
   });
-  const result   = await response.json();
+
+  const result = await response.json();
 
   if (response.ok) {
     return result as Credentials;
   }
 
-  throw new Error(result);
+  throw new Error(result.error);
 };
