@@ -1,7 +1,7 @@
-import Column from '@/components/column';
-import TitleBar from '@/components/title_bar';
-import CodeFormContainer from '@/features/login/containers/code_form_container';
-import UsernameFromContainer from '@/features/login/containers/username_form_container';
+import Column from '@/renderer/components/column';
+import TitleBar from '@/renderer/components/title_bar';
+import CodeFormContainer from '@/renderer/features/login/containers/code_form_container';
+import UsernameFromContainer from '@/renderer/features/login/containers/username_form_container';
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Route } from 'react-router-dom';

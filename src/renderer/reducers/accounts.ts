@@ -1,7 +1,7 @@
-import { RootAction } from '@/actions';
+import { RootAction } from '@/renderer/actions';
 import {
   fetchAccountProcess,
-} from '@/actions/accounts';
+} from '@/renderer/actions/accounts';
 import { Account } from '@lagunehq/core';
 import { Map as ImmutableMap } from 'immutable';
 import { isType } from 'typescript-fsa';

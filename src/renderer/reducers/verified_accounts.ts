@@ -1,10 +1,10 @@
-import { RootAction } from '@/actions';
+import { RootAction } from '@/renderer/actions';
 import {
   addVerifiedAccountProcess,
   fetchVerifiedAccountsProcess,
   removeVerifiedAccount,
-} from '@/actions/verified_account';
-import { VerifiedAccount } from '@@/typings/lagune';
+} from '@/renderer/actions/verified_account';
+import { VerifiedAccount } from '@@/renderer/typings/lagune';
 import { List as ImmutableList } from 'immutable';
 import { isType } from 'typescript-fsa';
 

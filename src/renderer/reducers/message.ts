@@ -1,8 +1,8 @@
-import { RootAction } from '@/actions';
+import { RootAction } from '@/renderer/actions';
 import {
   hideMessage,
   showMessage,
-} from '@/actions/message';
+} from '@/renderer/actions/message';
 import { Record } from 'immutable';
 import { isType } from 'typescript-fsa';
 

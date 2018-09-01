@@ -1,4 +1,4 @@
-import Lagune from '@/containers/lagune';
+import Lagune from '@/renderer/containers/lagune';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 

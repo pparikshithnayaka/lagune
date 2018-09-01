@@ -1,4 +1,4 @@
-import * as Lagune from '@@/typings/lagune';
+import * as Lagune from '@@/renderer/typings/lagune';
 import Dexie from 'dexie';
 
 export class Laugne extends Dexie {

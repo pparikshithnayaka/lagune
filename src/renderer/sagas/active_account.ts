@@ -1,10 +1,10 @@
 import {
   changeActiveAccount,
   changeActiveAccountProcess,
-} from '@/actions/active_account';
-import client from '@/client';
-import { RootState } from '@/reducers';
-import { VerifiedAccount } from '@@/typings/lagune';
+} from '@/renderer/actions/active_account';
+import client from '@/renderer/client';
+import { RootState } from '@/renderer/reducers';
+import { VerifiedAccount } from '@@/renderer/typings/lagune';
 import { SagaIterator } from 'redux-saga';
 import { put, select, takeEvery } from 'redux-saga/effects';
 

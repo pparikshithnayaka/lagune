@@ -3,12 +3,12 @@ import {
   fetchAuthorizationUrlProcess,
   verifyCode,
   verifyCodeProcess,
-} from '@/actions/login';
+} from '@/renderer/actions/login';
 import {
   addVerifiedAccount,
-} from '@/actions/verified_account';
-import * as AuthClient from '@/auth';
-import { RootState } from '@/reducers';
+} from '@/renderer/actions/verified_account';
+import * as AuthClient from '@/renderer/auth';
+import { RootState } from '@/renderer/reducers';
 import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 

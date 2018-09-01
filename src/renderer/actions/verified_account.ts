@@ -1,4 +1,4 @@
-import { VerifiedAccount } from '@@/typings/lagune';
+import { VerifiedAccount } from '@@/renderer/typings/lagune';
 import actionCreatorFactory from 'typescript-fsa';
 const actionCreator = actionCreatorFactory('VerifiedAccount');
 

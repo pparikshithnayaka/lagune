@@ -1,5 +1,5 @@
-import { fetchAuthorizationUrl } from '@/actions/login';
-import Button from '@/components/button';
+import { fetchAuthorizationUrl } from '@/renderer/actions/login';
+import Button from '@/renderer/components/button';
 import * as React from 'react';
 import { FormattedMessage, InjectedIntlProps } from 'react-intl';
 import { RouteComponentProps } from 'react-router-dom';

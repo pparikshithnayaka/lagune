@@ -1,5 +1,5 @@
-import AccountToggle from '@/features/root/components/account_toggle';
-import { RootState } from '@/reducers';
+import AccountToggle from '@/renderer/features/root/components/account_toggle';
+import { RootState } from '@/renderer/reducers';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state: RootState) => ({

@@ -1,6 +1,6 @@
-import errorMiddleware from '@/middlewares/error';
-import { reducer, RootState } from '@/reducers';
-import rootSaga from '@/sagas';
+import errorMiddleware from '@/renderer/middlewares/error';
+import { reducer, RootState } from '@/renderer/reducers';
+import rootSaga from '@/renderer/sagas';
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { Action } from 'typescript-fsa';

@@ -1,5 +1,5 @@
-import AccountToggleButtonContainer from '@/features/root/containers/account_toggle_button_container';
-import * as Lagune from '@@/typings/lagune';
+import AccountToggleButtonContainer from '@/renderer/features/root/containers/account_toggle_button_container';
+import * as Lagune from '@@/renderer/typings/lagune';
 import { List as ImmutableList } from 'immutable';
 import * as React from 'react';
 

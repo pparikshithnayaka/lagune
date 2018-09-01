@@ -3,9 +3,9 @@ import {
   addVerifiedAccountProcess,
   fetchVerifiedAccounts,
   fetchVerifiedAccountsProcess,
-} from '@/actions/verified_account';
-import db, { VerifiedAccountsTable } from '@/db';
-import { VerifiedAccount } from '@@/typings/lagune';
+} from '@/renderer/actions/verified_account';
+import db, { VerifiedAccountsTable } from '@/renderer/db';
+import { VerifiedAccount } from '@@/renderer/typings/lagune';
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 

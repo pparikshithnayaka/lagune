@@ -1,5 +1,5 @@
-import { fetchAccount } from '@/actions/accounts';
-import Button from '@/components/button';
+import { fetchAccount } from '@/renderer/actions/accounts';
+import Button from '@/renderer/components/button';
 import { Account } from '@lagunehq/core';
 import * as React from 'react';
 

@@ -1,5 +1,5 @@
-import { verifyCode } from '@/actions/login';
-import Button from '@/components/button';
+import { verifyCode } from '@/renderer/actions/login';
+import Button from '@/renderer/components/button';
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { RouteComponentProps } from 'react-router-dom';

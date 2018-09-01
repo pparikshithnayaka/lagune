@@ -1,29 +1,16 @@
-import config from '@/config';
-import { Credentials, Instance } from '@lagunehq/core';
+import config from '@/renderer/config';
+import { Credentials } from '@lagunehq/core';
 
-export interface ServerError {
-  error: string;
-}
-
-export interface Url {
-  url: string;
-}
-
-export interface Credentials {
-  access_token: string;
-  account: Credentials;
-  instance: Instance;
-}
 
 export const fetchAuthorizationUrl = async (host: string) => {
   const response = await fetch(`${config.server_url}/oauth/url?host=${host}`);
   const result   = await response.json();
 
   if (response.ok) {
-    return result as Url;
+    return result as string;
   }
 
-  throw result as ServerError;
+  throw new Error(result);
 };
 
 export const verifyCode = async (host: string, code: string) => {
@@ -38,5 +25,5 @@ export const verifyCode = async (host: string, code: string) => {
     return result as Credentials;
   }
 
-  throw result as ServerError;
+  throw new Error(result);
 };

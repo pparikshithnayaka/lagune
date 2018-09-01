@@ -1,5 +1,5 @@
-import { RootAction } from '@/actions';
-import { changeActiveAccount } from '@/actions/active_account';
+import { RootAction } from '@/renderer/actions';
+import { changeActiveAccount } from '@/renderer/actions/active_account';
 import { isType } from 'typescript-fsa';
 
 export type ActiveAccountState = number;

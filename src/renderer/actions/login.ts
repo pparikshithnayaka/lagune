@@ -1,4 +1,4 @@
-import * as AuthClient from '@/auth';
+import * as AuthClient from '@/renderer/auth';
 import actionCreatorFactory from 'typescript-fsa';
 const actionCreator = actionCreatorFactory('Login');
 

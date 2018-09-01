@@ -1,4 +1,4 @@
-import { RootAction } from '@/actions';
+import { RootAction } from '@/renderer/actions';
 // import { isType } from 'typescript-fsa';
 
 export interface SettingsInterface {

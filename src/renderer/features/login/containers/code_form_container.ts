@@ -1,5 +1,5 @@
-import { verifyCode } from '@/actions/login';
-import CodeForm, { Props } from '@/features/login/components/code_form';
+import { verifyCode } from '@/renderer/actions/login';
+import CodeForm, { Props } from '@/renderer/features/login/components/code_form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 

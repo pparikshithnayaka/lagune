@@ -1,9 +1,9 @@
-import accounts, { AccountsState } from '@/reducers/accounts';
-import activeAccount, { ActiveAccountState } from '@/reducers/active_account';
-import login, { LoginState } from '@/reducers/login';
-import message, { MessageState } from '@/reducers/message';
-import settings, { SettingsInterface } from '@/reducers/settings';
-import verified_accounts, { VerifiedAccountsState } from '@/reducers/verified_accounts';
+import accounts, { AccountsState } from '@/renderer/reducers/accounts';
+import activeAccount, { ActiveAccountState } from '@/renderer/reducers/active_account';
+import login, { LoginState } from '@/renderer/reducers/login';
+import message, { MessageState } from '@/renderer/reducers/message';
+import settings, { SettingsInterface } from '@/renderer/reducers/settings';
+import verified_accounts, { VerifiedAccountsState } from '@/renderer/reducers/verified_accounts';
 import { combineReducers } from 'redux';
 
 export interface RootState {

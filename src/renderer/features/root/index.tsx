@@ -1,7 +1,7 @@
-import { fetchVerifiedAccounts } from '@/actions/verified_account';
-import Accounts from '@/features/accounts';
-import Login from '@/features/login';
-import ActivityBarContainer from '@/features/root/containers/activity_bar_container';
+import { fetchVerifiedAccounts } from '@/renderer/actions/verified_account';
+import Accounts from '@/renderer/features/accounts';
+import Login from '@/renderer/features/login';
+import ActivityBarContainer from '@/renderer/features/root/containers/activity_bar_container';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom';

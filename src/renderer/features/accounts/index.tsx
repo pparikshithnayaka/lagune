@@ -1,6 +1,6 @@
-import Column from '@/components/column';
-import TitleBar from '@/components/title_bar';
-import { RootState } from '@/reducers';
+import Column from '@/renderer/components/column';
+import TitleBar from '@/renderer/components/title_bar';
+import { RootState } from '@/renderer/reducers';
 import { Account } from '@lagunehq/core';
 import * as React from 'react';
 import { connect } from 'react-redux';

@@ -1,5 +1,5 @@
-import * as Login from '@/actions/login';
-import * as Message from '@/actions/message';
+import * as Login from '@/renderer/actions/login';
+import * as Message from '@/renderer/actions/message';
 
 export type RootAction =
     typeof Login.fetchAuthorizationUrl

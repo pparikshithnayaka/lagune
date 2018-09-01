@@ -1,3 +1,18 @@
+import { Instance } from '@lagunehq/core';
+
+export interface ServerError {
+  error: string;
+}
+
+export interface Url {
+  url: string;
+}
+
+export interface Credentials {
+  access_token: string;
+  account: Credentials;
+  instance: Instance;
+}
 
 export interface VerifiedAccount {
   /** User id of authorized user */
@@ -15,3 +30,4 @@ export interface VerifiedAccount {
   /** URI of streaming API (e.g. `wss://mastodon.social`) */
   streaming_url: string;
 }
+

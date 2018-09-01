@@ -1,6 +1,6 @@
-import accountsSaga from '@/sagas/accounts';
-import dbSaga from '@/sagas/db';
-import loginSaga from '@/sagas/login';
+import accountsSaga from '@/renderer/sagas/accounts';
+import dbSaga from '@/renderer/sagas/db';
+import loginSaga from '@/renderer/sagas/login';
 import { all, fork } from 'redux-saga/effects';
 
 export default function* rootSaga () {

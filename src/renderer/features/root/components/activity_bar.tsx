@@ -1,4 +1,4 @@
-import AccountToggleContainer from '@/features/root/containers/account_toggle_container';
+import AccountToggleContainer from '@/renderer/features/root/containers/account_toggle_container';
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 

@@ -1,4 +1,4 @@
-import Button from '@/components/button';
+import Button from '@/renderer/components/button';
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
