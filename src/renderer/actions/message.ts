@@ -6,4 +6,4 @@ export const showMessage = actionCreator<{
   text: string;
 }>('SHOW');
 
-export const hideMessage = actionCreator<{}>('HIDE');
+export const hideMessage = actionCreator<void>('HIDE');
