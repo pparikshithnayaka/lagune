@@ -6,7 +6,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
-export interface Props extends RouteComponentProps<void> {
+export interface Props extends RouteComponentProps<{ accountId: string }> {
   account?: Account;
 }
 
