@@ -1,6 +1,3 @@
-import * as Redux from 'redux';
-import { Collection } from 'immutable';
-
 declare namespace ReactRouterTransition {
   namespace RouteTransition {
     interface Props {
@@ -24,6 +21,7 @@ declare namespace ReactRouterTransition {
       exact?: boolean;
     }
   }
+
   class AnimatedRoute extends React.SFC<AnimatedRoute.Props> {}
 
   namespace AnimatedSwitch {
@@ -54,13 +52,4 @@ declare namespace ReactRouterTransition {
 
 declare module 'react-router-transition' {
   export = ReactRouterTransition;
-}
-
-declare namespace ReduxImmutable {
-  function combineReducers<S, T>(reducers: Redux.ReducersMapObject, getDefaultState?: () => Collection.Keyed<T, S>): Redux.Reducer<S>;
-  function combineReducers<S>(reducers: Redux.ReducersMapObject, getDefaultState?: () => Collection.Indexed<S>): Redux.Reducer<S>;
-}
-
-declare module 'redux-immutable' {
-  export = ReduxImmutable;
 }
