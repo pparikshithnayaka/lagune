@@ -1,17 +1,21 @@
-import { VerifiedAccount } from '@/renderer/db';
-import AccountToggleButtonContainer from '@/renderer/features/root/containers/account_toggle_button_container';
-import { List as ImmutableList } from 'immutable';
+import { AccountToggleButtonContainer } from '@/renderer/features/root/containers/account_toggle_button_container';
+import { VerifiedAccount } from '@/renderer/utils/database/tables/verified_account';
 import * as React from 'react';
 
 export interface Props {
-  me: string;
-  accounts: ImmutableList<VerifiedAccount>;
+  me: number;
+  accounts: VerifiedAccount[];
+  accountIds: number[];
 }
 
-export default class AccountToggle extends React.PureComponent<Props> {
+export class AccountToggle extends React.PureComponent<Props> {
 
   public render () {
     const { accounts, me } = this.props;
+
+    if (!accounts) {
+      return <div />;
+    }
 
     return (
       <div className='account-toggle'>

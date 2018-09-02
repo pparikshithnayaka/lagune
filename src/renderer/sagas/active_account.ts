@@ -3,8 +3,8 @@ import {
   changeActiveAccountProcess,
 } from '@/renderer/actions/active_account';
 import client from '@/renderer/client';
-import { VerifiedAccount } from '@/renderer/db';
 import { RootState } from '@/renderer/reducers';
+import { VerifiedAccount } from '@/renderer/utils/database/tables/verified_account';
 import { SagaIterator } from 'redux-saga';
 import { put, select, takeEvery } from 'redux-saga/effects';
 
@@ -12,7 +12,7 @@ function* changeActiveAccountWorker (index: number): SagaIterator {
   yield put(changeActiveAccountProcess.started(index));
 
   try {
-    const activeAccount: VerifiedAccount = yield select((state: RootState) => state.verified_accounts.get(index));
+    const activeAccount: VerifiedAccount = yield select((state: RootState) => state.database.getIn(['verified_accounts', index]));
     client.setUrl(activeAccount.url);
     client.setToken(activeAccount.access_token);
     client.setStreamingUrl(activeAccount.streaming_url);

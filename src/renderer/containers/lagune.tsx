@@ -12,7 +12,7 @@ export const store = configureStore();
 
 addLocaleData(ja);
 addLocaleData(en);
-const messages = require.context('../../locales/', false, /\.json$/);
+const messages = require.context('@/locales/', false, /\.json$/);
 const messagesForLocale = (locale: string) => messages(`./${locale}.json`);
 
 interface Props {

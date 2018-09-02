@@ -1,4 +1,4 @@
-import { VerifiedAccount } from '@/renderer/db';
+import { VerifiedAccount } from '@/renderer/utils/database/tables/verified_account';
 import actionCreatorFactory from 'typescript-fsa';
 const actionCreator = actionCreatorFactory('Database');
 

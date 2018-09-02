@@ -38,8 +38,8 @@ function* verifyCodeWorker (code: string): SagaIterator {
 
     client.setToken(result);
 
-    const me: Credentials    = yield (client.verfiyCredentials);
-    const instance: Instance = yield (client.fetchInstance);
+    const me: Credentials    = yield call(client.verfiyCredentials);
+    const instance: Instance = yield call(client.fetchInstance);
 
     // call addVerifiedAccount to save to the DB
     yield put(addVerifiedAccount({

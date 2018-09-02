@@ -4,9 +4,10 @@ import database, { DatabaseState } from '@/renderer/reducers/database';
 import login, { LoginState } from '@/renderer/reducers/login';
 import message, { MessageState } from '@/renderer/reducers/message';
 import settings, { SettingsInterface } from '@/renderer/reducers/settings';
-import { combineReducers } from 'redux';
+import { Map as ImmutableMap } from 'immutable';
+import { combineReducers } from 'redux-immutable';
 
-export interface RootState {
+interface Reducers {
   accounts: AccountsState;
   login: LoginState;
   message: MessageState;
@@ -14,6 +15,11 @@ export interface RootState {
   settings: SettingsInterface;
   activeAccount: ActiveAccountState;
 }
+
+export type RootState = ImmutableMap<
+  keyof Reducers,
+  Reducers[keyof Reducers]
+>;
 
 export const reducer = combineReducers<RootState>({
   accounts,

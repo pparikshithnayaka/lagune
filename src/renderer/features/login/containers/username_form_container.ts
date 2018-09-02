@@ -12,5 +12,5 @@ const mapStateToProps = (state: RootState) => ({
 
 export default connect(
   mapStateToProps,
-  { fetchAuthorizationUrl },
+  { onSubmit: fetchAuthorizationUrl },
 )(withRouter(injectIntl(UsernameForm)));

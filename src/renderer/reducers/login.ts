@@ -2,7 +2,7 @@ import { RootAction } from '@/renderer/actions';
 import {
   fetchAuthorizationUrlProcess,
 } from '@/renderer/actions/login';
-import { Record } from 'immutable';
+import { Record as ImmutableRecord } from 'immutable';
 import { isType } from 'typescript-fsa';
 
 interface RecordProps {
@@ -22,7 +22,7 @@ const defaultProps: RecordProps = {
   is_submitted: false,
 };
 
-export class LoginState extends Record(defaultProps) {}
+export class LoginState extends ImmutableRecord(defaultProps) {}
 
 
 function startAuthorizationProcess (state: LoginState, host: string): LoginState {

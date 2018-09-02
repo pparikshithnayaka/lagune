@@ -1,21 +1,13 @@
-import { fetchAccount } from '@/renderer/actions/accounts';
 import Button from '@/renderer/components/button';
 import { Account } from '@lagunehq/core';
 import * as React from 'react';
 
 export interface Props {
   account?: Account;
-  accountId: string;
-  fetchAccount: typeof fetchAccount;
+  accountId: number;
 }
 
 export default class AccountToggleButton extends React.PureComponent<Props> {
-
-  public componentDidMount () {
-    if ( !this.props.account ) {
-      this.props.fetchAccount(this.props.accountId);
-    }
-  }
 
   public render () {
     const { account } = this.props;

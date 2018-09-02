@@ -37,4 +37,4 @@ const mapStateToProps = (state: RootState, ownProps: Props) => ({
   account: state.accounts.get(ownProps.match.params.accountId),
 });
 
-export default connect(mapStateToProps)(withRouter<Props>(Accounts));
+export default connect(mapStateToProps)(withRouter(Accounts));
