@@ -1,38 +1,38 @@
-declare namespace ReactRouterTransition {
-  namespace RouteTransition {
-    interface Props {
-      className?: string;
-      wrapperComponent?: boolean|JSX.Element|string;
-      atEnter: React.CSSProperties;
-      atActive: React.CSSProperties;
-      atLeave: React.CSSProperties;
-      didLeave?: (...args: any[]) => void;
-      mapStyles?: (...args: any[]) => void;
-      runOnMount?: boolean;
+declare module 'react-router-transition' {
+  import * as React from 'react';
+
+  interface RouteTransitionProps {
+    className?: string;
+    wrapperComponent?: boolean|JSX.Element|string;
+    atEnter: React.CSSProperties;
+    atActive: React.CSSProperties;
+    atLeave: React.CSSProperties;
+    didLeave?: (...args: any[]) => void;
+    mapStyles?: (...args: any[]) => void;
+    runOnMount?: boolean;
+  }
+
+  export class RouteTransition extends React.Component<RouteTransitionProps> {}
+
+
+  interface AnimatedRouteProps extends RouteTransitionProps {
+    component: React.ReactNode;
+    path: string;
+    exact?: boolean;
+  }
+
+  export class AnimatedRoute extends React.SFC<AnimatedRouteProps> {}
+
+
+  interface AnimatedSwitchProps extends RouteTransitionProps {
+    location?: {
+      key?: string;
+      pathname?: string;
     }
   }
 
-  class RouteTransition extends React.Component<RouteTransition.Props> {}
+  export class AnimatedSwitch extends React.Component<AnimatedSwitchProps> {}
 
-  namespace AnimatedRoute {
-    interface Props extends RouteTransition.Props {
-      component: React.ReactNode;
-      path: string;
-      exact?: boolean;
-    }
-  }
-
-  class AnimatedRoute extends React.SFC<AnimatedRoute.Props> {}
-
-  namespace AnimatedSwitch {
-    interface Props extends RouteTransition.Props {
-      location?: {
-        key?: string;
-        pathname?: string;
-      }
-    }
-  }
-  class AnimatedSwitch extends React.Component<AnimatedSwitch.Props> {}
 
   interface SpringHelperConfig {
     stiffness?: number;
@@ -47,9 +47,5 @@ declare namespace ReactRouterTransition {
     precision: number;
   }
 
-  function spring(val: number, config?: SpringHelperConfig): OpaqueConfig;
-}
-
-declare module 'react-router-transition' {
-  export = ReactRouterTransition;
+  export function spring(val: number, config?: SpringHelperConfig): OpaqueConfig;
 }
