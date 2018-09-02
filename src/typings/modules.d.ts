@@ -65,3 +65,4 @@ declare namespace ReactRouterTransition {
 declare module 'react-router-transition' {
   export = ReactRouterTransition;
 }
+
