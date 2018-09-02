@@ -3,9 +3,8 @@ import {
   addVerifiedAccountProcess,
   fetchVerifiedAccounts,
   fetchVerifiedAccountsProcess,
-} from '@/renderer/actions/verified_account';
-import db, { VerifiedAccountsTable } from '@/renderer/db';
-import { VerifiedAccount } from '@@/renderer/typings/lagune';
+} from '@/renderer/actions/database';
+import db, { VerifiedAccount } from '@/renderer/db';
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
@@ -29,14 +28,14 @@ function* fetchVerifiedAccountsWorker (): SagaIterator {
   yield put(fetchVerifiedAccountsProcess.started());
 
   try {
-    const result: VerifiedAccountsTable[] = yield call(() => db.verified_accounts.toArray());
+    const result: VerifiedAccount[] = yield call(db.verified_accounts.toArray);
     yield put(fetchVerifiedAccountsProcess.done({ result }));
   } catch (error) {
     yield put(fetchVerifiedAccountsProcess.failed(error));
   }
 }
 
-export default function* dbSaga () {
+export function* databaseSaga () {
   yield takeEvery(addVerifiedAccount, ({ payload }) => addVerifiedAccountWorker(payload));
   yield takeEvery(fetchVerifiedAccounts, () => fetchVerifiedAccountsWorker());
 }

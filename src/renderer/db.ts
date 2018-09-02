@@ -1,8 +1,7 @@
-import { VerifiedAccount } from '@/renderer/utils/registerClient';
 import Dexie from 'dexie';
 
 export class Laugne extends Dexie {
-  public verified_accounts!: Dexie.Table<VerifiedAccountTable, number>;
+  public verified_accounts!: Dexie.Table<VerifiedAccount, number>;
 
   constructor () {
     super('lagune');
@@ -15,8 +14,24 @@ export class Laugne extends Dexie {
   }
 }
 
-export interface VerifiedAccountTable extends VerifiedAccount {
+export interface VerifiedAccount {
+  /** Unique id */
   id?: number;
+
+  /** User id of authorized user */
+  me: string;
+
+  /** Access token for the API */
+  access_token: string;
+
+  /** URL of host (e.g. `https://mastodon.social`) */
+  url: string;
+
+  /** Suffix of URL which represents version of the API */
+  url_version: string;
+
+  /** URI of streaming API (e.g. `wss://mastodon.social`) */
+  streaming_url: string;
 }
 
 export default new Laugne();

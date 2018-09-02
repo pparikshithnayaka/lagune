@@ -58,7 +58,7 @@ export default class ActivityBar extends React.PureComponent<Props> {
 
     return (
       <nav className='activity-bar'>
-        <AccountToggleContainer />
+        <AccountToggleContainer me={this.props.me || 0} />
 
         {
           items.map((item, i) => (

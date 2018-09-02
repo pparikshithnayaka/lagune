@@ -1,8 +1,6 @@
 import config from '@/renderer/config';
 import querystring from 'querystring';
 
-export * from '@/renderer/utils/registerClient/entities';
-
 export const fetchAuthorizationUrl = async (host: string) => {
   const response = await fetch(`${config.server_url}/oauth/url?${querystring.stringify({ host })}`);
   const result   = await response.json();

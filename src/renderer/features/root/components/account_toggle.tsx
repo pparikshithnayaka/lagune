@@ -1,16 +1,17 @@
+import { VerifiedAccount } from '@/renderer/db';
 import AccountToggleButtonContainer from '@/renderer/features/root/containers/account_toggle_button_container';
-import * as Lagune from '@@/renderer/typings/lagune';
 import { List as ImmutableList } from 'immutable';
 import * as React from 'react';
 
 export interface Props {
-  accounts: ImmutableList<Lagune.VerifiedAccount>;
+  me: string;
+  accounts: ImmutableList<VerifiedAccount>;
 }
 
 export default class AccountToggle extends React.PureComponent<Props> {
 
   public render () {
-    const { accounts } = this.props;
+    const { accounts, me } = this.props;
 
     return (
       <div className='account-toggle'>
@@ -18,7 +19,7 @@ export default class AccountToggle extends React.PureComponent<Props> {
           {
             accounts.map((account, i) => (
               <li className='account-toggle__list-item' key={`${i}-${account.url}`}>
-                <AccountToggleButtonContainer accountId={account.me} />
+                <AccountToggleButtonContainer accountId={me}/>
               </li>
             ))
           }

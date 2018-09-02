@@ -3,8 +3,8 @@ import {
   changeActiveAccountProcess,
 } from '@/renderer/actions/active_account';
 import client from '@/renderer/client';
+import { VerifiedAccount } from '@/renderer/db';
 import { RootState } from '@/renderer/reducers';
-import { VerifiedAccount } from '@@/renderer/typings/lagune';
 import { SagaIterator } from 'redux-saga';
 import { put, select, takeEvery } from 'redux-saga/effects';
 

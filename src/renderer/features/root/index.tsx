@@ -1,4 +1,4 @@
-import { fetchVerifiedAccounts } from '@/renderer/actions/verified_account';
+import { fetchVerifiedAccounts } from '@/renderer/actions/database';
 import Accounts from '@/renderer/features/accounts';
 import Login from '@/renderer/features/login';
 import ActivityBarContainer from '@/renderer/features/root/containers/activity_bar_container';
@@ -13,7 +13,7 @@ export interface Props extends RouteComponentProps<{}> {
 class Root extends React.PureComponent<Props> {
 
   public componentDidMount () {
-    this.props.onLoad({});
+    this.props.onLoad();
   }
 
   public render () {

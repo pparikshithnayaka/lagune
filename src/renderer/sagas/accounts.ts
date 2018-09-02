@@ -18,6 +18,6 @@ function* fetchAccountWorker (id: string): SagaIterator {
   }
 }
 
-export default function* accountsSaga () {
+export function* accountsSaga () {
   yield takeEvery(fetchAccount, ({ payload }) => fetchAccountWorker(payload));
 }
