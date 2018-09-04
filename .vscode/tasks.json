@@ -32,9 +32,9 @@
 
     {
       "type": "npm",
-      "script": "watch:dev",
+      "script": "watch-dev",
       "label": "Watch modifications",
-      "identifier": "watch:dev",
+      "identifier": "watch-dev",
       "isBackground": true,
       "group": {
         "kind": "build",
@@ -48,9 +48,9 @@
 
     {
       "type": "npm",
-      "script": "build:dev",
+      "script": "build-dev",
       "label": "Build for development",
-      "identifier": "build:dev",
+      "identifier": "build-dev",
       "group": "build",
       "presentation": {
         "reveal": "silent",
@@ -60,9 +60,9 @@
 
     {
       "type": "npm",
-      "script": "build:prod",
+      "script": "build-prod",
       "label": "Build for production",
-      "identifier": "build:prod",
+      "identifier": "build-prod",
       "group": "build",
       "presentation": {
         "reveal": "silent",
