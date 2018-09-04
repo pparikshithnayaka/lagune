@@ -4,6 +4,7 @@ import {
   showMessage,
 } from '@/renderer/actions/message';
 import { Record } from 'immutable';
+import { Reducer } from 'redux';
 import { isType } from 'typescript-fsa';
 
 interface RecordProps {
@@ -36,7 +37,7 @@ function resetMessage (state: MessageState): MessageState {
 
 const initialState = new MessageState();
 
-export default function message (state = initialState, action: RootAction) {
+export const message: Reducer<MessageState, RootAction> = (state = initialState, action) => {
   if (isType(action, showMessage)) {
     return setMessage(state, action.payload);
   }
@@ -46,4 +47,4 @@ export default function message (state = initialState, action: RootAction) {
   }
 
   return state;
-}
+};

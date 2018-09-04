@@ -34,7 +34,7 @@ class Accounts extends React.PureComponent<Props> {
 }
 
 const mapStateToProps = (state: RootState, ownProps: Props) => ({
-  account: state.accounts.get(ownProps.match.params.accountId),
+  account: state.getIn(['accounts', ownProps.match.params.accountId]),
 });
 
 export default connect(mapStateToProps)(withRouter(Accounts));

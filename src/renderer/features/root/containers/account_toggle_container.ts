@@ -3,8 +3,8 @@ import { RootState } from '@/renderer/reducers';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state: RootState) => ({
-  me: state.activeAccount,
-  accountIds: state.database.get('verified_accounts', []).map((account) => account.get('id')),
+  me: state.get('activeAccount', undefined),
+  accountIds: state.getIn(['database', 'verified_accounts']),
 });
 
 export default connect(mapStateToProps)(AccountToggle);

@@ -2,7 +2,7 @@ import {
   fetchAccount,
   fetchAccountProcess,
 } from '@/renderer/actions/accounts';
-import client from '@/renderer/client';
+import { client } from '@/renderer/client';
 import { Account } from '@lagunehq/core';
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';

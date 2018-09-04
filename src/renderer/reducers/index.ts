@@ -1,31 +1,34 @@
-import accounts, { AccountsState } from '@/renderer/reducers/accounts';
-import activeAccount, { ActiveAccountState } from '@/renderer/reducers/active_account';
-import database, { DatabaseState } from '@/renderer/reducers/database';
-import login, { LoginState } from '@/renderer/reducers/login';
-import message, { MessageState } from '@/renderer/reducers/message';
-import settings, { SettingsInterface } from '@/renderer/reducers/settings';
-import { Map as ImmutableMap } from 'immutable';
-import { combineReducers } from 'redux-immutable';
+import { RootAction } from '@/renderer/actions';
+import { accounts } from '@/renderer/reducers/accounts';
+import { activeAccount } from '@/renderer/reducers/active_account';
+import { database } from '@/renderer/reducers/database';
+import { login } from '@/renderer/reducers/login';
+import { message } from '@/renderer/reducers/message';
+import { Record as ImmutableRecord } from 'immutable';
+import { Reducer } from 'redux';
 
-interface Reducers {
-  accounts: AccountsState;
-  login: LoginState;
-  message: MessageState;
-  database: DatabaseState;
-  settings: SettingsInterface;
-  activeAccount: ActiveAccountState;
-}
-
-export type RootState = ImmutableMap<
-  keyof Reducers,
-  Reducers[keyof Reducers]
->;
-
-export const reducer = combineReducers<RootState>({
+export class RootState extends ImmutableRecord({
   accounts,
   login,
   message,
   database,
-  settings,
   activeAccount,
-});
+}) {}
+
+const reducersMap = new RootState();
+
+export function reducer (state: RootState | undefined, action: RootAction): RootState {
+  if (!state) {
+    return reducersMap;
+  }
+
+  console.log(action.type);
+
+  for (const [ name, reducer ] of reducersMap) {
+    const previousStateForKey = state.get(name, undefined);
+    const nextStateForKey     = (reducer as Reducer)(previousStateForKey, action);
+    state.set(name, nextStateForKey);
+  }
+
+  return state;
+}

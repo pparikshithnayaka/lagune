@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state: RootState) => ({
-  isSubmitting: state.login.is_submitting,
-  isSubmitted: state.login.is_submitted,
+  isSubmitting: state.getIn(['login', 'is_submitting']),
+  isSubmitted: state.getIn(['login', 'is_submitted']),
 });
 
 export default connect(

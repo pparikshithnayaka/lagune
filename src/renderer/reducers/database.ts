@@ -9,10 +9,11 @@ import {
   Map as ImmutableMap,
   Record as ImmutableRecord,
 } from 'immutable';
+import { Reducer } from 'redux';
 import { isType } from 'typescript-fsa';
 
 interface RecordProp {
-  readonly verified_accounts: ImmutableMap<number, VerifiedAccount>;
+  verified_accounts: ImmutableMap<number, VerifiedAccount>;
 }
 
 const defaultProps: RecordProp = {
@@ -41,9 +42,9 @@ function removeVerifiedAccountFromList (state: DatabaseState, id: number) {
   ));
 }
 
-const initialState: DatabaseState = new DatabaseState();
+const initialState = new DatabaseState();
 
-export default function database (state = initialState, action: RootAction) {
+export const database: Reducer<DatabaseState, RootAction> = (state = initialState, action) => {
   if (
     isType(action, fetchVerifiedAccountsProcess.done) ||
     isType(action, addVerifiedAccountProcess.done)
@@ -56,4 +57,4 @@ export default function database (state = initialState, action: RootAction) {
   }
 
   return state;
-}
+};

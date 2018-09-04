@@ -3,6 +3,7 @@ import {
   fetchAuthorizationUrlProcess,
 } from '@/renderer/actions/login';
 import { Record as ImmutableRecord } from 'immutable';
+import { Reducer } from 'redux';
 import { isType } from 'typescript-fsa';
 
 interface RecordProps {
@@ -24,7 +25,6 @@ const defaultProps: RecordProps = {
 
 export class LoginState extends ImmutableRecord(defaultProps) {}
 
-
 function startAuthorizationProcess (state: LoginState, host: string): LoginState {
   return state.withMutations((record) => {
     record.set('host', host);
@@ -33,17 +33,16 @@ function startAuthorizationProcess (state: LoginState, host: string): LoginState
 }
 
 function finishAuthorizationProcess (state: LoginState): LoginState {
-  return state.setIn(['is_submitted'], true);
+  return state.set('is_submitted', true);
 }
 
 function fulfilAuthorizationProcess (state: LoginState): LoginState {
-  return state.setIn(['is_submitting'], true);
+  return state.set('is_submitting', true);
 }
-
 
 const initialState = new LoginState();
 
-export default function login (state = initialState, action: RootAction) {
+export const login: Reducer<LoginState, RootAction> = (state = initialState, action) => {
   if (isType(action, fetchAuthorizationUrlProcess.started)) {
     return startAuthorizationProcess(state, action.payload);
   }
@@ -60,4 +59,4 @@ export default function login (state = initialState, action: RootAction) {
   }
 
   return state;
-}
+};

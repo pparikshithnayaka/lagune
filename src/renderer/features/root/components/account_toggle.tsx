@@ -3,7 +3,7 @@ import { VerifiedAccount } from '@/renderer/utils/database/tables/verified_accou
 import * as React from 'react';
 
 export interface Props {
-  me: number;
+  me?: number;
   accounts: VerifiedAccount[];
   accountIds: number[];
 }

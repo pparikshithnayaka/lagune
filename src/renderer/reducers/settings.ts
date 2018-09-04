@@ -9,6 +9,6 @@ const intiialState: SettingsInterface = {
   lang: 'en',
 };
 
-export default function settings (state = intiialState, action: RootAction) {
+export default function settings (state = intiialState, _: RootAction) {
   return state;
 }

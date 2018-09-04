@@ -1,3 +1,2 @@
 import Mastodon from '@lagunehq/core';
-const client = new Mastodon({});
-export default client;
+export const client = new Mastodon({});

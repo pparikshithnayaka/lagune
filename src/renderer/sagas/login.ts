@@ -7,7 +7,7 @@ import {
   verifyCode,
   verifyCodeProcess,
 } from '@/renderer/actions/login';
-import client from '@/renderer/client';
+import { client } from '@/renderer/client';
 import { RootState } from '@/renderer/reducers';
 import * as registerClient from '@/renderer/utils/registerClient';
 import { Credentials, Instance } from '@lagunehq/core';
@@ -15,9 +15,9 @@ import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 
 function* fetchAuthorizationUrlWorker (host: string): SagaIterator {
-  yield put(fetchAuthorizationUrlProcess.started(host));
-
   try {
+    yield put(fetchAuthorizationUrlProcess.started(host));
+
     const result: string = yield call(registerClient.fetchAuthorizationUrl, host);
 
     // Open authorization page in the default browser
@@ -30,10 +30,10 @@ function* fetchAuthorizationUrlWorker (host: string): SagaIterator {
 }
 
 function* verifyCodeWorker (code: string): SagaIterator {
-  yield put(verifyCodeProcess.started(code));
-
   try {
-    const host: string = yield select((state: RootState) => state.login.host);
+    yield put(verifyCodeProcess.started(code));
+
+    const host: string = yield select((state: RootState) => state.getIn(['login', 'host']));
     const result: string = yield call(registerClient.verifyCode, host, code);
 
     client.setToken(result);
