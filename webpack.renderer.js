@@ -68,8 +68,7 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      '@': __dirname + '/src/renderer',
-      '@@': __dirname + '/src'
+      '@': __dirname + '/src',
     },
   },
 
