@@ -3,7 +3,7 @@
   "private": true,
   "license": "AGPL-3.0",
   "author": "Neetshin <n33t5hin@gmail.com>",
-  "repository": "https://github.com/neetshin/lagune",
+  "repository": "https://github.com/lagunehq/lagune",
   "main": "./dist/main.js",
   "scripts": {
     "test": "npm-run-all test:*",

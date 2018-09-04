@@ -46,7 +46,7 @@ export class Main {
 
     // Updates application itself if any new version released in GitHub
     if (this.isProduction) {
-      updater.updater({ repo: 'lagunehq/lagune', updateInterval: '1 hour' });
+      updater.updater({ updateInterval: '1 hour' });
     }
   }
 
