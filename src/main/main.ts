@@ -67,8 +67,8 @@ export class Main {
       webPreferences: {
         nodeIntegration: this.isDevServer,
         contextIsolation: !this.isDevServer,
-        webSecurity: (!this.isDevServer && this.isProduction),
-        allowRunningInsecureContent: !(!this.isDevServer && this.isProduction),
+        webSecurity: !this.isDevServer && this.isProduction,
+        allowRunningInsecureContent: this.isDevServer && !this.isProduction,
       },
     });
 
