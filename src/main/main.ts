@@ -50,6 +50,12 @@ export class Main {
     }
   }
 
+  /**
+   * Create window
+   * - About security policy, see https://electronjs.org/docs/tutorial/security
+   * - While `isDevServer` is true, HTML/JS/CSS contents will be served from http://localhost:8080
+   *   which is the path of webpack-dev-server. therefore, `allowRunningInsecureContent` need to be true
+   */
   private createWindow () {
     this.mainWindow = new BrowserWindow({
       show: false,
@@ -59,14 +65,8 @@ export class Main {
       frame: !this.isDarwin,
       titleBarStyle: this.isDarwin ? 'hidden' : 'hiddenInset',
       webPreferences: {
-        // Security policy
-        // See: https://electronjs.org/docs/tutorial/security
         nodeIntegration: this.isDevServer,
         contextIsolation: !this.isDevServer,
-
-        // `DEV_SERVER` is a flag which represents whether webpack's running with dev-server
-        // If you're using webpack-dev-server, contents will be served from `http://localhost:8080`
-        // thus HTTP need to be granted while you're developing
         webSecurity: (!this.isDevServer && this.isProduction),
         allowRunningInsecureContent: !(!this.isDevServer && this.isProduction),
       },
