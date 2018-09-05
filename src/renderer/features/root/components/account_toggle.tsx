@@ -13,7 +13,7 @@ export class AccountToggle extends React.PureComponent<Props> {
   public render () {
     const { accounts, me } = this.props;
 
-    if (!accounts) {
+    if (!accounts || !me) {
       return <div />;
     }
 
