@@ -1,4 +1,4 @@
-import { Record as ImmutableRecord } from 'immutable';
+import * as Immutable from 'immutable';
 import { Action, Reducer, ReducersMapObject } from 'redux';
 
 /**
@@ -10,9 +10,9 @@ import { Action, Reducer, ReducersMapObject } from 'redux';
  */
 export function combineReducers <S, A extends Action> (
   reducers: ReducersMapObject<S, A>,
-  getDefaultState: () => ImmutableRecord<S> = () => ImmutableRecord.Factory<S>({} as any as S),
-): Reducer<ImmutableRecord<S>, A> {
-  return (inputState: ImmutableRecord<S> = getDefaultState(), action: A): ImmutableRecord<S> => {
+  getDefaultState: (() => Immutable.Record<S>) = (() => Immutable.Record<S>({} as any as S)()),
+): Reducer<Immutable.Record<S>, A> {
+  return (inputState: Immutable.Record<S> = getDefaultState(), action: A): Immutable.Record<S> => {
     if (!inputState) {
       return inputState;
     }
