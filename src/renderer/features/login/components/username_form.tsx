@@ -1,5 +1,7 @@
 import { fetchAuthorizationUrl } from '@/renderer/actions/login';
 import Button from '@/renderer/components/button';
+import { faCircleNotch, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { FormattedMessage, InjectedIntlProps } from 'react-intl';
 import { RouteComponentProps } from 'react-router-dom';
@@ -67,7 +69,11 @@ export default class UsernameForm extends React.PureComponent<Props, State> {
             text='Submit'
             skeleton
           >
-            <i className={this.props.isSubmitting ? 'fas fa-circle-notch fa-spin' : 'fas fa-paper-plane'} aria-hidden='true' />
+            {
+              this.props.isSubmitting
+                ? <FontAwesomeIcon icon={faCircleNotch} spin />
+                : <FontAwesomeIcon icon={faPaperPlane} />
+            }
           </Button>
         </form>
 

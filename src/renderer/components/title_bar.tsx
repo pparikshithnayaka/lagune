@@ -1,4 +1,6 @@
 import Button from '@/renderer/components/button';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
@@ -21,7 +23,7 @@ class TitleBar extends React.PureComponent<Props> {
           linkButton
           onClick={this.handleGoBack}
         >
-          <i className='fas fa-chevron-left' />
+          <FontAwesomeIcon icon={faChevronLeft} />
         </Button>
 
         <h2>{children}</h2>

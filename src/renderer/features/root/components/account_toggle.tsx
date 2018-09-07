@@ -5,7 +5,6 @@ import * as React from 'react';
 export interface Props {
   me?: number;
   accounts: VerifiedAccount[];
-  accountIds: number[];
 }
 
 export class AccountToggle extends React.PureComponent<Props> {

@@ -1,5 +1,7 @@
 import { verifyCode } from '@/renderer/actions/login';
 import Button from '@/renderer/components/button';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { RouteComponentProps } from 'react-router-dom';
@@ -51,7 +53,7 @@ export default class CodeForm extends React.PureComponent<Props, State> {
           />
 
           <Button className='login-form__button' text='Submit' skeleton>
-            <i className='fas fa-paper-plane' aria-hidden='true' />
+            <FontAwesomeIcon icon={faPaperPlane} />
           </Button>
         </form>
       </div>
