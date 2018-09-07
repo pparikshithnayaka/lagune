@@ -1,4 +1,4 @@
-import Root from '@/renderer/features/root';
+import Root from '@/renderer/pages/root';
 import { configureStore } from '@/renderer/store/configureStore';
 import * as React from 'react';
 import { addLocaleData, IntlProvider } from 'react-intl';

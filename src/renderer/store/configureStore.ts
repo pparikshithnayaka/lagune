@@ -1,7 +1,7 @@
-import { RootAction } from '@/renderer/actions';
 import errorMiddleware from '@/renderer/middlewares/error';
-import { reducer, RootState } from '@/renderer/reducers';
-import rootSaga from '@/renderer/sagas';
+import { RootAction } from '@/renderer/store/actions';
+import { reducer, RootState } from '@/renderer/store/reducers';
+import rootSaga from '@/renderer/store/sagas';
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 

@@ -1,4 +1,4 @@
-import { RootAction } from '@/renderer/actions';
+import { RootAction } from '@/renderer/store/actions';
 import { ipcRenderer as ipc } from 'electron';
 import { Middleware } from 'redux';
 
