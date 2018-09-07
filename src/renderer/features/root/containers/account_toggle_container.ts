@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state: RootState) => ({
   me: state.get('activeAccount', undefined),
-  accountIds: state.getIn(['database', 'verified_accounts']),
+  accounts: state.getIn(['database', 'verified_accounts']),
 });
 
 export default connect(mapStateToProps)(AccountToggle);
