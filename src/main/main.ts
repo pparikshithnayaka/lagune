@@ -29,7 +29,6 @@ export class Main {
     this.createWindow();
 
     // Electorn events
-    app.once('ready', this.onReady);
     app.on('activate', this.onActivate);
     app.on('window-all-closed', this.onWindowAllClosed);
 
@@ -81,13 +80,6 @@ export class Main {
   }
 
   /**
-   * Create window on ready
-   */
-  protected onReady = () => {
-    this.createWindow();
-  }
-
-  /**
    * Show main window on ready to show
    */
   protected onReadyToShow = async () => {
@@ -101,7 +93,9 @@ export class Main {
         await installExtension(REDUX_DEVTOOLS);
         await installExtension(REACT_DEVELOPER_TOOLS);
       } catch (error) {
-        console.log(`<Lagune> Chrome extension install failed: ${error}`);
+        /* tslint:disable no-console */
+        console.warn(`Chrome extension install failed: ${error.toString()}`);
+        /* tslint:enable no-console */
       }
     }
   }
@@ -144,4 +138,8 @@ export class Main {
   }
 }
 
-export default new Main();
+app.once('ready', () => {
+  /* tslint:disable no-unused-expression */
+  new Main();
+  /* tslint:enable no-unused-expression */
+});
