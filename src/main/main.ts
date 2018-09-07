@@ -1,4 +1,3 @@
-/* tslint:disable: no-console */
 import {
   app, BrowserWindow, dialog,
   ipcMain as ipc,
@@ -15,7 +14,7 @@ import * as url from 'url';
 export class Main {
 
   /** The main window */
-  private mainWindow: Electron.BrowserWindow | null = null;
+  private mainWindow: BrowserWindow | null = null;
 
   /** Whetehr production build or not */
   private isProduction = process.env.NODE_ENV === 'production';
