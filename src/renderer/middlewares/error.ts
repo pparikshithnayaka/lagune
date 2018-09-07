@@ -2,9 +2,9 @@ import { RootAction } from '@/renderer/actions';
 import { ipcRenderer as ipc } from 'electron';
 import { Middleware } from 'redux';
 
-export default function errorsMiddleware () {
-  return () => (next) => (action: RootAction) => {
-    if (/FAILED$/g.test(action.type)) {
+export default function errorsMiddleware (): Middleware {
+  return () => (next) => (action: ReturnType<RootAction>) => {
+    if (action.error && action.payload instanceof Error) {
       const message = action.payload.toString() || 'An unexpected error occurred';
       const link = 'https://github.com/lagunehq/lagune/issues';
 
