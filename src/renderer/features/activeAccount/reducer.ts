@@ -1,5 +1,5 @@
-import { RootAction } from '@/renderer/store/actions';
 import { changeActiveAccount } from '@/renderer/features/activeAccount/actions';
+import { RootAction } from '@/renderer/store/actions';
 import { Reducer } from 'redux';
 import { isType } from 'typescript-fsa';
 

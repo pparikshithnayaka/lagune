@@ -1,7 +1,7 @@
-import { RootAction } from '@/renderer/store/actions';
 import {
   fetchAuthorizationUrlProcess,
 } from '@/renderer/features/login/actions';
+import { RootAction } from '@/renderer/store/actions';
 import { Record as ImmutableRecord } from 'immutable';
 import { Reducer } from 'redux';
 import { isType } from 'typescript-fsa';

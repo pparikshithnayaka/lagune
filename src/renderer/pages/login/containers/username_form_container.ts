@@ -1,5 +1,5 @@
-import UsernameForm from '@/renderer/pages/login/components/username_form';
 import { fetchAuthorizationUrl } from '@/renderer/features/login/actions';
+import UsernameForm from '@/renderer/pages/login/components/username_form';
 import { RootState } from '@/renderer/store/reducers';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';

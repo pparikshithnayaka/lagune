@@ -1,9 +1,9 @@
-import { RootAction } from '@/renderer/store/actions';
 import {
   addVerifiedAccountProcess,
   fetchVerifiedAccountsProcess,
   removeVerifiedAccount,
 } from '@/renderer/features/database/actions';
+import { RootAction } from '@/renderer/store/actions';
 import { VerifiedAccount } from '@/renderer/utils/database/tables/verified_account';
 import {
   Map as ImmutableMap,

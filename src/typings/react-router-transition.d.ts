@@ -28,7 +28,7 @@ declare module 'react-router-transition' {
     location?: {
       key?: string;
       pathname?: string;
-    }
+    };
   }
 
   export class AnimatedSwitch extends React.Component<AnimatedSwitchProps> {}
@@ -47,5 +47,5 @@ declare module 'react-router-transition' {
     precision: number;
   }
 
-  export function spring(val: number, config?: SpringHelperConfig): OpaqueConfig;
+  export function spring (val: number, config?: SpringHelperConfig): OpaqueConfig;
 }
