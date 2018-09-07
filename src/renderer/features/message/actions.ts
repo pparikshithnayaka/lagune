@@ -1,5 +1,5 @@
 import actionCreatorFactory from 'typescript-fsa';
-const actionCreator = actionCreatorFactory('Message');
+const actionCreator = actionCreatorFactory('message');
 
 export const showMessage = actionCreator<{
   type: 'success'|'failure'|'hidden';

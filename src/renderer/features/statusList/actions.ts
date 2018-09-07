@@ -1,6 +1,6 @@
 import { Status } from '@lagunehq/core';
 import actionCreatorFactory from 'typescript-fsa';
-const actionCreator = actionCreatorFactory('StatusList');
+const actionCreator = actionCreatorFactory('statusList');
 
 export const fetchHomeTimeline      = actionCreator.async<void, Status[], Error>('FETCH_HOME');
 export const fetchCommunityTimeline = actionCreator.async<void, Status[], Error>('FETCH_COMMUNITY');

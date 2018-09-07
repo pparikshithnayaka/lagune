@@ -1,6 +1,6 @@
 import { VerifiedAccount } from '@/renderer/utils/database/tables/verified_account';
 import actionCreatorFactory from 'typescript-fsa';
-const actionCreator = actionCreatorFactory('Database');
+const actionCreator = actionCreatorFactory('database');
 
 export const fetchVerifiedAccounts = actionCreator<void>('FETCH_VERIFIED_ACCOUNTS');
 export const fetchVerifiedAccountsProcess = actionCreator.async<
