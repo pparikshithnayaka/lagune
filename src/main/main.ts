@@ -1,19 +1,21 @@
 /* tslint:disable: no-console */
 import {
-  app, BrowserWindow,
-  dialog,
+  app, BrowserWindow, dialog,
   ipcMain as ipc,
-  shell,
+  MessageBoxOptions, shell,
 } from 'electron';
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
   REDUX_DEVTOOLS,
 } from 'electron-devtools-installer';
 import * as path from 'path';
-import * as updater from 'update-electron-app';
+import updater from 'update-electron-app';
 import * as url from 'url';
 
 export class Main {
+
+  /** The main window */
+  private mainWindow: Electron.BrowserWindow | null = null;
 
   /** Whetehr production build or not */
   private isProduction = process.env.NODE_ENV === 'production';
@@ -24,19 +26,16 @@ export class Main {
   /** Whether Electron running with webpack-dev-server */
   private isDevServer = process.env.DEV_SERVER === 'YES';
 
-  /** The main window */
-  private mainWindow: Electron.BrowserWindow|null = null;
-
   constructor () {
     this.createWindow();
 
     // Electorn events
-    app.on('ready', this.onReady);
-    app.on('window-all-closed', this.onWindowAllClosed);
+    app.once('ready', this.onReady);
     app.on('activate', this.onActivate);
+    app.on('window-all-closed', this.onWindowAllClosed);
 
     // IPC events
-    ipc.on('show-error', this.onShowError);
+    ipc.on('show-message-box', this.onShowMessageBox);
 
     // Main window events
     if (this.mainWindow !== null) {
@@ -56,7 +55,7 @@ export class Main {
    * - While `isDevServer` is true, HTML/JS/CSS contents will be served from http://localhost:8080
    *   which is the path of webpack-dev-server. therefore, `allowRunningInsecureContent` need to be true
    */
-  private createWindow () {
+  protected createWindow () {
     this.mainWindow = new BrowserWindow({
       show: false,
       height: 700,
@@ -83,31 +82,35 @@ export class Main {
   }
 
   /**
-   * Create main window on ready
+   * Create window on ready
    */
-  private onReady () {
+  protected onReady = () => {
     this.createWindow();
   }
 
   /**
    * Show main window on ready to show
    */
-  private onReadyToShow () {
+  protected onReadyToShow = async () => {
     if (this.mainWindow !== null) {
       this.mainWindow.show();
     }
 
     // Installing React Developer Tools and Redux DevTools
     if (!this.isProduction) {
-      installExtension(REDUX_DEVTOOLS);
-      installExtension(REACT_DEVELOPER_TOOLS);
+      try {
+        await installExtension(REDUX_DEVTOOLS);
+        await installExtension(REACT_DEVELOPER_TOOLS);
+      } catch (error) {
+        console.log(`<Lagune> Chrome extension install failed: ${error}`);
+      }
     }
   }
 
   /**
    * Create main window when app activated
    */
-  private onActivate () {
+  protected onActivate = () => {
     if (this.mainWindow === null) {
       this.createWindow();
     }
@@ -116,7 +119,7 @@ export class Main {
   /**
    * Quite app when all window closed except darwin
    */
-  private onWindowAllClosed () {
+  protected onWindowAllClosed = () => {
     if (!this.isDarwin) {
       app.quit();
     }
@@ -127,7 +130,7 @@ export class Main {
    * @param e Event
    * @param arg URL to open
    */
-  private onNewWindow (e: Event, arg: string) {
+  protected onNewWindow = (e: Event, arg: string) => {
     e.preventDefault();
     shell.openExternal(arg);
   }
@@ -137,12 +140,8 @@ export class Main {
    * @param _ Event
    * @param message Textual error message
    */
-  private onShowError (_: Event, message: string) {
-    dialog.showMessageBox({
-      type: 'error',
-      buttons: [],
-      message,
-    });
+  protected onShowMessageBox = (_: Event, options: MessageBoxOptions) => {
+    dialog.showMessageBox(options);
   }
 }
 
