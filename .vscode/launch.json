@@ -7,13 +7,10 @@
       "name": "Electron: Main",
       "protocol": "inspector",
       "cwd": "${workspaceFolder}",
-      "sourceMaps" : true,
       "stopOnEntry": false,
       "outFiles": [
-        "./dist/**/*.js",
-        "./dist/**/*.css",
+        "./dist/**/*"
       ],
-      "preLaunchTask": "watch-dev",
       "runtimeArgs": [
         "--remote-debugging-port=9223",
         "."
@@ -21,17 +18,19 @@
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
       "windows": {
         "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
-      }
+      },
+      "preLaunchTask": "watch",
+      "sourceMaps" : true
     },
     {
-      "name": "Electron: Renderer",
       "type": "chrome",
       "request": "attach",
+      "name": "Electron: Renderer",
       "port": 9223,
       "timeout": 30000,
-      "sourceMaps" : true,
       "url": "http://localhost:8080/",
-      "webRoot": "${workspaceFolder}/src"
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMaps" : true
     }
   ],
   "compounds": [

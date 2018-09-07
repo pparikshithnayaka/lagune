@@ -11,13 +11,12 @@
     "test:jest": "jest --coverage --config=jest.config.json",
     "test:compile": "tsc --noEmit",
     "test:stylelint": "stylelint 'src/**/*.scss'",
-    "build-dev": "cross-env NODE_ENV=development node-run-all build:*",
-    "build-prod": "cross-env NODE_ENV=production node-run-all build:*",
+    "build": "cross-env NODE_ENV=production npm-run-all build:*",
+    "build-dev": "cross-env NODE_ENV=development npm-run-all build:*",
     "build:main": "webpack --mode=${NODE_ENV} --no-progress --hide-modules --config=webpack.main.js",
     "build:renderer": "webpack --mode=${NODE_ENV} --no-progress --hide-modules --config=webpack.renderer.js",
-    "watch-dev": "cross-env NODE_ENV=development DEV_SERVER=YES yarn run watch",
-    "watch-prod": "cross-env NODE_ENV=production DEV_SERVER=YES yarn run watch",
-    "watch": "yarn run build:main && webpack-dev-server --mode=${NODE_ENV} --config=webpack.renderer.js"
+    "watch": "cross-env NODE_ENV=development DEV_SERVER=YES npm-run-all watch:*",
+    "watch:renderer": "yarn run build:main && webpack-dev-server --mode=${NODE_ENV} --config=webpack.renderer.js"
   },
   "engines": {
     "node": ">=10"
