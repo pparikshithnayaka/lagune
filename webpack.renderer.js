@@ -15,12 +15,6 @@ const config = {
   entry: {
     'renderer': './renderer/main.tsx',
     'style': './styles/main.scss',
-    'fontawesome': [
-      '@fortawesome/fontawesome',
-      '@fortawesome/fontawesome-free-brands',
-      '@fortawesome/fontawesome-free-regular',
-      '@fortawesome/fontawesome-free-solid',
-    ]
   },
 
   output: {
