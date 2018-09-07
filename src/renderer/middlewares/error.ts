@@ -13,6 +13,10 @@ export default function errorsMiddleware (): Middleware {
         message: `Lagune: ${message}`,
         detail: `To report bug to developer, open issue on GitHub: ${link}`,
       });
+
+      /* tslint:disable no-console */
+      console.error(action.payload);
+      /* tslint:enable no-console */
     }
 
     return next(action);
