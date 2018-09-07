@@ -47,7 +47,6 @@ function* verifyCodeWorker (code: string): SagaIterator {
       access_token:  result,
       me:            me.id,
       url:           `https://${instance.uri}`,
-      url_version:   '/api/v1',
       streaming_url: instance.urls.streaming_api,
     }));
 

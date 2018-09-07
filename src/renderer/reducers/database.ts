@@ -30,7 +30,7 @@ function appendVerifiedAccountToList (state: DatabaseState, verifiedAccount: Ver
 
 function appendVerifiedAccountsToList (state: DatabaseState, verifiedAccounts: VerifiedAccount[]): DatabaseState {
   verifiedAccounts.forEach((verifiedAccount) => {
-    return appendVerifiedAccountToList(state, verifiedAccount);
+    state = appendVerifiedAccountToList(state, verifiedAccount);
   });
 
   return state;
