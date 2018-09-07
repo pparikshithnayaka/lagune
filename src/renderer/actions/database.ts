@@ -9,7 +9,8 @@ export const fetchVerifiedAccountsProcess = actionCreator.async<
   Error
 >('FETCH_VERIFIED_ACCOUNTS_PROCESS');
 
-export const addVerifiedAccount = actionCreator<VerifiedAccount>('ADD_VERIFIED_ACCOUNT');
+// `id` prop will be added by dexie automatically so not needed when inserting
+export const addVerifiedAccount = actionCreator<Pick<VerifiedAccount, Exclude<keyof VerifiedAccount, 'id'>>>('ADD_VERIFIED_ACCOUNT');
 export const addVerifiedAccountProcess = actionCreator.async<
   VerifiedAccount,
   VerifiedAccount[],

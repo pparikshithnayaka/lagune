@@ -1,6 +1,6 @@
 export interface VerifiedAccount {
   /** Unique id */
-  id?: number;
+  id: number;
 
   /** User id of authorized user */
   me: string;
