@@ -23,7 +23,7 @@ const defaultProps: RecordProp = {
 export class DatabaseState extends ImmutableRecord(defaultProps) {}
 
 function appendVerifiedAccountToList (state: DatabaseState, verifiedAccount: VerifiedAccount): DatabaseState {
-  return state.updateIn(['verified_accounts'], (map) => (
+  return state.update('verified_accounts', (map) => (
     map.set(verifiedAccount.id, verifiedAccount)
   ));
 }

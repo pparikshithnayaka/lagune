@@ -7,9 +7,7 @@ export class Laugne extends Dexie {
   constructor () {
     super('lagune');
 
-    const db = this;
-
-    db.version(1).stores({
+    this.version(1).stores({
       verified_accounts: '++id, me, access_token, url, url_version, streaming_url',
     });
   }

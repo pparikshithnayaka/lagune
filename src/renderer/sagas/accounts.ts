@@ -11,7 +11,7 @@ function* fetchAccountWorker (id: string): SagaIterator {
   yield put(fetchAccountProcess.started(id));
 
   try {
-    const account: Account = yield call(client.fetchAccount, id);
+    const account: Account = yield call(() => client.fetchAccount(id));
     yield put(fetchAccountProcess.done({ params: id, result: account}));
   } catch (error) {
     yield put(fetchAccountProcess.failed(error));

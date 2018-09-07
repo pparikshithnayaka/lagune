@@ -34,12 +34,13 @@ function* verifyCodeWorker (code: string): SagaIterator {
     yield put(verifyCodeProcess.started(code));
 
     const host: string = yield select((state: RootState) => state.getIn(['login', 'host']));
-    const result: string = yield call(registerClient.verifyCode, host, code);
+    const result: string = yield call(() => registerClient.verifyCode(host, code));
 
+    client.setUrl(`https://${host}`);
     client.setToken(result);
 
-    const me: Credentials    = yield call(client.verfiyCredentials);
-    const instance: Instance = yield call(client.fetchInstance);
+    const me: Credentials    = yield call(() => client.verfiyCredentials());
+    const instance: Instance = yield call(() => client.fetchInstance());
 
     // call addVerifiedAccount to save to the DB
     yield put(addVerifiedAccount({

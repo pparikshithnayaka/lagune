@@ -26,36 +26,35 @@ const defaultProps: RecordProps = {
 export class LoginState extends ImmutableRecord(defaultProps) {}
 
 function startAuthorizationProcess (state: LoginState, host: string): LoginState {
-  return state.withMutations((record) => {
-    record.set('host', host);
-    record.set('is_submitting', true);
-  });
+  return state
+    .set('host', host)
+    .set('is_submitting', true);
 }
 
-function finishAuthorizationProcess (state: LoginState): LoginState {
+function doneAuthorizationProcess (state: LoginState): LoginState {
   return state.set('is_submitted', true);
 }
 
-function fulfilAuthorizationProcess (state: LoginState): LoginState {
-  return state.set('is_submitting', true);
+function fulfilledAuthorizationProcess (state: LoginState): LoginState {
+  return state.set('is_submitting', false);
 }
 
 const initialState = new LoginState();
 
 export const login: Reducer<LoginState, RootAction> = (state = initialState, action) => {
   if (isType(action, fetchAuthorizationUrlProcess.started)) {
-    return startAuthorizationProcess(state, action.payload);
+    state = startAuthorizationProcess(state, action.payload);
   }
 
   if (isType(action, fetchAuthorizationUrlProcess.done)) {
-    return finishAuthorizationProcess(state);
+    state = doneAuthorizationProcess(state);
   }
 
   if (
     isType(action, fetchAuthorizationUrlProcess.done) ||
     isType(action, fetchAuthorizationUrlProcess.failed)
   ) {
-    return fulfilAuthorizationProcess(state);
+    state = fulfilledAuthorizationProcess(state);
   }
 
   return state;
