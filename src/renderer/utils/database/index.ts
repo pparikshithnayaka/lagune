@@ -8,7 +8,7 @@ export class Laugne extends Dexie {
     super('lagune');
 
     this.version(1).stores({
-      verified_accounts: '++id, me, access_token, url, streaming_url',
+      verified_accounts: '++id, me, access_token, url, streaming_url, platform',
     });
   }
 }

@@ -13,4 +13,7 @@ export interface VerifiedAccount {
 
   /** URI of streaming API (e.g. `wss://mastodon.social`) */
   streaming_url: string;
+
+  /** Kind of the logged in service */
+  platform: string;
 }

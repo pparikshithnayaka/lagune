@@ -48,6 +48,7 @@ function* verifyCodeWorker (code: string): SagaIterator {
       me:            me.id,
       url:           `https://${instance.uri}`,
       streaming_url: instance.urls.streaming_api,
+      platform:      'mastodon',
     }));
 
     yield put(verifyCodeProcess.done({ params: code, result }));
